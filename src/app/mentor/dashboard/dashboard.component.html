@@ -1,0 +1,77 @@
+<!-- Page Content -->     
+    <div class="row">
+        <div class="col-md-12 col-lg-4 dash-board-list blue">
+            <div class="dash-widget">
+                <div class="circle-bar">
+                    <div class="icon-col">
+                        <i class="fas fa-users"></i>
+                    </div>
+                </div>
+                <div class="dash-widget-info">
+                    <h3>23</h3>
+                    <h6>Members</h6>															
+                </div>
+            </div>
+        </div>        
+        <div class="col-md-12 col-lg-4 dash-board-list yellow">
+            <div class="dash-widget">
+                <div class="circle-bar">
+                    <div class="icon-col">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                </div>
+                <div class="dash-widget-info">
+                    <h3>{{appointmentsNumber}}</h3>
+                    <h6>Appointments</h6>															
+                </div>
+            </div>
+        </div>        
+        <div class="col-md-12 col-lg-4 dash-board-list pink">
+            <div class="dash-widget">
+                <div class="circle-bar">
+                    <div class="icon-col">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                </div>
+                <div class="dash-widget-info">
+                    <h3>$14</h3>
+                    <h6>Total Earned</h6>															
+                </div>
+            </div>
+        </div>
+    </div>    
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="mb-4">Mentee Lists</h4>
+            <div class="card card-table">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover table-center mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Basic Info</th>
+                                    <th>Created Date</th>
+                                    <th class="text-center">Tags</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <!-- <tbody>
+                                <tr *ngFor="let appointment of appointments">
+                                    <td>
+                                        <h2 class="table-avatar">
+                                            <a [routerLink]="'/mentor-profile'" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" [src]="appointment.mentees.img" alt="User Image"></a>
+                                            <a [routerLink]="'/mentor-profile'">{{appointment.mentees.name}}<span>{{appointment.mentees.email}}</span></a>				
+                                        </h2>
+                                    </td>
+                                    <td>{{appointment.appointment_time | date : 'dd MMM yyyy'}}</td>
+                                    <td class="text-center"><span [ngClass]="{'accept': appointment.status === 'accepted', 'pending': appointment.status === 'pending', 'reject': appointment.status === 'rejected' }">{{appointment.status}}</span></td>
+                                    <td class="text-center"><a [routerLink]="'/mentor-profile'" class="btn btn-sm bg-info-light"><i class="far fa-eye"></i> View</a></td>
+                                </tr>
+                            </tbody> -->
+                        </table>		
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+<!-- /Page Content -->

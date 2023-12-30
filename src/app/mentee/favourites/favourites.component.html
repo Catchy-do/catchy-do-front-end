@@ -1,0 +1,69 @@
+<div class="row row-grid" *ngIf="favourites">
+	<div class="col-md-6 col-lg-4" *ngFor="let fav of favourites">
+		<div class="profile-widget">
+			<div class="user-avatar">
+				<a [routerLink]="'/mentor-profile'" [queryParams]="{id: fav.id}">
+					<img class="img-fluid" alt="User Image" [src]="fav.profile">
+				</a>
+				<a href="javascript:void(0)" (click)="unfav(fav)" class="fav-btn">
+					<i class="far fa-bookmark"></i>
+				</a>
+			</div>
+			<div class="pro-content">
+				<h3 class="title">
+					<a [routerLink]="'/mentor-profile'" [queryParams]="{id: fav.id}">{{fav.doctor_name}}</a> 
+					<i class="fas fa-check-circle verified"></i>
+				</h3>
+				<p class="speciality">{{fav.Education}}</p>
+				<div class="rating">
+					<i class="fas fa-star filled"></i>
+					<i class="fas fa-star filled"></i>
+					<i class="fas fa-star filled"></i>
+					<i class="fas fa-star filled"></i>
+					<i class="fas fa-star filled"></i>
+					<span class="d-inline-block average-rating">(17)</span>
+				</div>
+				<ul class="available-info">
+					<li>
+						<i class="fas fa-map-marker-alt"></i> {{fav.location}}
+					</li>
+					<li>
+						<i class="far fa-clock"></i> Available on&nbsp;{{fav.Available | date : "E, dd MMM"}}
+					</li>
+					<li>
+						<i class="far fa-money-bill-alt"></i> {{fav.consulting_fees}} - {{fav.booking_fees}} <i class="fas fa-info-circle" tooltip="Lorem Ipsum" placement="top"></i>
+					</li>
+				</ul>
+				<div class="row row-sm">
+					<div class="col-6">
+						<a [routerLink]="'/mentor-profile'" [queryParams]="{id: fav.id}" class="btn view-btn">View Profile</a>
+					</div>
+					<div class="col-6">
+						<a [routerLink]="'/book-now'" class="btn book-btn">Book Now</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>		
+</div>
+<div class="blog-pagination mt-4" *ngIf="pagination">
+	<nav>
+		<ul class="pagination justify-content-center">
+			<li class="page-item disabled">
+				<a class="page-link" href="#" tabindex="-1"><i class="fas fa-angle-double-left"></i></a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="#">1</a>
+			</li>
+			<li class="page-item active">
+				<a class="page-link" href="#">2 <span class="visually-hidden">(current)</span></a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="#">3</a>
+			</li>
+			<li class="page-item">
+				<a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a>
+			</li>
+		</ul>
+	</nav>
+</div>

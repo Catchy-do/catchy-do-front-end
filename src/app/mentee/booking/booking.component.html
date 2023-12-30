@@ -1,0 +1,38 @@
+	<h3 class="pb-3">Booking Summary</h3>
+	<!-- Mentee List Tab -->
+	<div class="tab-pane show active" id="mentee-list">
+		<div class="card card-table">
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-hover table-center mb-0">
+						<thead>
+							<tr>
+								<th>Mentor</th>
+								<th class="text-center">Creation Date</th>
+								<th class="text-center">Scheduled Date</th>
+								<th class="text-center">Scheduled Timings</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr *ngFor="let b of bookings"> 
+								<td>
+									<h2 class="table-avatar">
+										<a [routerLink]="'/mentor-profile'" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="{{b.mentor.imgUrl}}" alt="mentor Image"></a>
+										<a [routerLink]="'/mentor-profile'">{{b.mentor.firstName}}
+											<!-- <span>{{b.mentor.email}}</span> -->
+										</a>				
+									</h2>
+								</td>
+								<td class="text-center">{{b.creationDate| date : 'dd MMM yyyy'}}</td>
+								<td class="text-center">{{b.scheduledDate| date : 'dd MMM yyyy'}}</td>
+								<td class="text-center"><span>{{b.scheduledtime}}</span></td>
+								<!-- <td class="text-center"><a [routerLink]="'/mentee-profile'" class="btn btn-sm bg-info-light"><i class="far fa-eye"></i> View</a></td> -->
+							</tr>							
+						</tbody>
+					</table>		
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /Mentee List Tab -->
+<!-- /Booking summary -->

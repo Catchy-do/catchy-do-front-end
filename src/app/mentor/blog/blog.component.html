@@ -1,0 +1,83 @@
+<!-- Page Content -->                
+<div class="row">                    
+    <div class="col-12">
+        <!-- Tab Menu -->
+        <nav class="user-tabs">
+            <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
+                <li>
+                    <a class="nav-link active" href="#activeservice" data-bs-toggle="tab">Active Blog</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#inactiveservice" data-bs-toggle="tab">Inactive Blog</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /Tab Menu -->
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Active Content -->
+            <div role="tabpanel" id="activeservice" class="tab-pane fade show active">
+
+                <div class="row">
+                    <div class="col-12 col-md-6 col-xl-4" *ngFor="let blog of blogs">
+                        <div class="course-box blog grid-blog">
+                            <div class="blog-image mb-0">
+                                <a [routerLink]="'/blog-details'" [queryParams]="{id: blog.id}"><img class="img-fluid" src="{{blog.img}}" alt="Post Image"></a>
+                            </div>
+                            <div class="course-content">
+                                <span class="date">{{blog.createdAt | date : 'dd MMM yyyy'}}</span>
+                                <span class="course-title">{{blog.title}}</span>
+                                <p class="desc-ellipsis ">{{blog.description}}</p>
+                                <div class="row">
+                                    <div class="col">
+                                        <a [routerLink]="'/mentor/edit-blog'" class="text-success"><i class="far fa-edit"></i> Edit</a>
+                                    </div>
+                                    <div class="col text-end">
+                                        <a href="javascript:void(0);" class="text-danger">
+                                            <i class="far fa-trash-alt"></i> {{blog.status}}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /Active Content -->                        
+            <!-- Inactive Content -->
+            <div role="tabpanel" id="inactiveservice" class="tab-pane fade">
+            
+                <div class="row">
+                    <div class="col-12 col-md-6 col-xl-4" *ngFor="let blog of blogs">
+                        <div class="course-box blog grid-blog">
+                            <div class="blog-image mb-0">
+                                <a [routerLink]="'/blog-details'" [queryParams]="{id: blog.id}"><img class="img-fluid" src="{{blog.img}}" alt="Post Image"></a>
+                            </div>
+                            <div class="course-content">
+                                <span class="date">{{blog.createdAt | date : 'dd MMM yyyy'}}</span>
+                                <span class="course-title">{{blog.title}}</span>
+                                <p class="desc-ellipsis ">{{blog.description}}</p>
+                                <div class="row">
+                                    <div class="col">
+                                        <a [routerLink]="'/mentor/edit-blog'" class="text-success">
+                                            <i class="far fa-edit"></i> Edit
+                                        </a>
+                                    </div>
+                                    <div class="col text-end">
+                                        <a href="javascript:void(0);" class="text-success">
+                                            <i class="fas fa-toggle-on"></i>{{blog.status}}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Inactive Content -->
+        </div>
+        <!-- /Tab Content -->
+    </div>
+</div>	
+<!-- /Page Content -->

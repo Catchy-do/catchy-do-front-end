@@ -1,0 +1,13 @@
+.required {
+	color : red;
+	padding-left: 3px;
+}
+.content {
+	padding-bottom: 50px;
+}
+.left-btn { float: left;padding: 10px }
+.right-btn { float: right;padding: 10px }
+
+.input-group-text{
+    line-height: 2;
+}

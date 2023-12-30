@@ -1,0 +1,122 @@
+<div class="page-wrapper">
+    <div class="content container-fluid">
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-7 col-auto">
+                    <h3 class="page-title">Categories</h3>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a [routerLink]="'/admin'">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Categories</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- /Page Header -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="datatable table table-hover table-center mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Category</th>
+                                        <th>Date</th>
+                                        <th class="text-center">Reviews</th>
+                                        <th class="text-end">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let special of speciality">
+                                        <td>{{special.key}}</td>
+
+                                        <td>
+                                            <h2 class="table-avatar">
+                                                <a class="avatar avatar-sm me-2">
+                                                    <img class="avatar-img rounded-circle"
+                                                        [src]="special.img"
+                                                        alt="Speciality">
+                                                </a>
+                                                <a>{{special.speciality}}</a>
+                                            </h2>
+                                        </td>
+                                        <td>{{special.date | date : 'dd MMM yyyy'}}</td>
+                                        <td class="text-center">
+                                            <i class="fe fe-star text-warning"></i>
+                                            <i class="fe fe-star text-warning"></i>
+                                            <i class="fe fe-star text-warning"></i>
+                                            <i class="fe fe-star text-warning"></i>
+                                            <i class="fe fe-star-o text-secondary"></i>
+                                        </td>
+                                        <td class="text-end">
+                                            <div class="actions">
+                                                <a class="btn btn-sm bg-success-light me-2" data-bs-toggle="modal"
+                                                    (click)="editModal(edittemplate,special)">
+                                                    <i class="fe fe-pencil"></i> Edit
+                                                </a>
+                                                <a data-bs-toggle="modal" (click)="deleteModal(delete,special)"
+                                                    class="btn btn-sm bg-danger-light">
+                                                    <i class="fe fe-trash"></i> Delete
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Modal -->
+<ng-template #edittemplate>
+    <div class="modal-body">
+        <div class="form-content p-2">
+            <div class="modal-header border-0">
+                <h4 class="modal-title">Edit</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="modalRef.hide()"></button>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <form id="update_category" method="post" autocomplete="off" enctype="multipart/form-data" novalidate="novalidate" class="bv-form"><button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+                        <input type="hidden" name="csrf_token_name" value="104dbdaf79d7d8e21e4ae9991d166669">
+                        <div class="form-group">
+                            <label>Category Name</label>
+                            <input class="form-control" type="text" value="Painting" name="category_name" id="category_name" data-bv-field="category_name">
+                            <input class="form-control" type="hidden" value="8" name="category_id" id="category_id">
+                        <small class="help-block" data-bv-validator="remote" data-bv-for="category_name" data-bv-result="NOT_VALIDATED" style="display: none;">This category name is already exist</small><small class="help-block" data-bv-validator="notEmpty" data-bv-for="category_name" data-bv-result="NOT_VALIDATED" style="display: none;">Please enter category name</small></div>
+                        <div class="form-group">
+                            <label>Category Image</label>
+                            <input class="form-control" type="file" name="category_image" id="category_image">
+                        </div>
+                        <div class="form-group">
+                            <div class="avatar">
+                                <img class="avatar-img rounded" src="assets/img/user/user.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <button class="btn btn-primary me-2" name="form_submit" value="submit" type="submit" (click)="save()">Save Changes</button>
+                            <button type="button" class="btn btn-danger" (click)="decline()">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+<!-- /Edit Modal -->
+
+<ng-template #delete>
+	<div class="modal-body text-center">
+		<div class="form-content p-2">
+			<h4 class="modal-title">Delete</h4>
+			<p class="mb-4">Are you sure want to delete?</p>
+			<button type="button" class="btn btn-primary me-2" (click)="deleteSpeciality()">Delete </button>
+			<button type="button" class="btn btn-danger" (click)="decline()" >Close</button>
+		</div>
+	</div>
+</ng-template>

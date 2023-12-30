@@ -1,0 +1,158 @@
+<div class="card">
+	<div class="card-body">		
+		<!-- Profile Settings Form -->
+		<form>
+			
+				<div class="col-12 col-md-12">
+					<div class="form-group">
+
+
+						<div class="change-avatar">
+							<div class="profile-img">
+								<img *ngIf="userImage==null"src="assets/img/user/avatar-user-male.png" alt="User Image">
+								<img *ngIf="userImage!=null"src="{{userImage}}" alt="User Image">
+							</div>
+							<div class="upload-img" *ngIf="!confimeChange">
+								<div class="change-photo-btn">
+									<span><i class="fa fa-upload"></i> Upload Photo</span>
+									<input type="file" class="upload" (change)="onChange($event)">
+								</div>
+								
+							</div>
+							<div class="form-group" *ngIf="confimeChange"  (click)="upload()">
+								<div class="change-photo-btn floated" style=" background-color:darkgreen;">
+									<span><i class="fa fa-check" ></i> Confirme</span>
+									 
+								</div>
+								<div  class="change-photo-btn floated" style=" background-color: chocolate;" (click)="cancel()">
+									<span><i class="fa fa-cancel " ></i> Cancel</span>
+									 
+								</div>
+							</div>
+							
+						</div>
+					</div>
+
+
+				</div>
+				<div class="row form-row" [formGroup]="settingsForm">
+				<div class="col-12 col-md-6">
+					<div class="form-group">
+						<label>First Name</label>
+						<input type="text" class="form-control" formControlName="firstName" 
+						[(ngModel)]="userInfo.firstName" >
+					</div>
+				</div>
+				<div class="col-12 col-md-6">
+					<div class="form-group">
+						<label>Last Name</label>
+						<input type="text" class="form-control" formControlName="lastName" 
+						[(ngModel)]="userInfo.lastName">
+					</div>
+				</div>
+				<div class="col-12 col-md-6">
+					<div class="form-group">
+						<label>Date of Birth</label>
+						<div class="cal-icon">
+							<input type="text" class="form-control datetimepicker" formControlName="dateOfBirth" 
+							[(ngModel)]="userInfo.dateOfBirth" >
+							
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-md-6">
+					<div class="form-group">
+						<label>Email ID</label>
+						<input type="email" class="form-control" formControlName="email"
+						[(ngModel)]="userInfo.email">
+					</div>
+				</div>
+				<div class="col-12 col-md-6">
+					<div class="form-group">
+						<label>Mobile</label>
+						<input type="text" formControlName="phoneNumber" class="form-control"
+						[(ngModel)]="userInfo.phoneNumber">
+					</div>
+				</div>
+				<div class="col-12">
+					<div class="form-group">
+					<label>Address</label>
+						<input type="text" class="form-control" formControlName="adresse"
+						[(ngModel)]="userInfo.adresse">
+					</div>
+				</div>
+				<div class="col-12 col-md-6">
+					<div class="form-group">
+						<label>Ville</label>
+						<!-- <input type="text" class="form-control" formControlName="ville"
+						[(ngModel)]="userInfo.ville"> -->
+						<div class="col-lg-9">
+							<select class="form-control" [(ngModel)]="userInfo.villeID" name="villeID"
+								formControlName="villeID" required 
+								[ngClass]=" ! settingsForm.controls['villeID'].valid ? 'form-control is-invalid' : 'form-control is-valid' ">
+								<option [ngValue]="ville.id"  *ngFor="let ville of villes">
+									{{ville.text}}
+								</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-md-6">
+					<div class="form-group">
+						<label>Region</label>
+						<!-- <input type="text" class="form-control" formControlName="region"
+						[(ngModel)]="userInfo.region"> -->
+						<div class="col-lg-9">
+							<select [ngModel]="regions" class="form-control"
+								(ngModelChange)="getAllRVille($event)" name="sel3"
+								 data-select2-id="1" tabindex="-4" [ngModelOptions]="{standalone: true}"
+								aria-hidden="true" >
+
+								<option [ngValue]="reg.id" *ngFor="let reg of regions" value="{{reg.id}}">
+									{{reg.text}}</option>
+
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 col-md-6">
+					<div class="form-group">
+						<label>Zip Code</label>
+						<input type="text" class="form-control" formControlName="zipCode"
+						[(ngModel)]="userInfo.zipCode">
+					</div>
+				</div>
+				<div class="col-12 col-md-6">
+					<div class="form-group">
+						<label>Country</label>
+						<!-- <input type="text" class="form-control" formControlName="pays"
+						[(ngModel)]="userInfo.countryName" placeholder="{{userInfo.countryName}}">  -->
+						
+						<!-- <div class="col-lg-9">
+							
+							<select [(ngModel)]="selectedCountry" class="form-control"
+								(change)="getAllPaysRegion($event)" name="sel2"
+								[ngModelOptions]="{standalone: true}" >
+								<option [ngValue]="p" *ngFor="let p of pays">{{p.text}}</option>
+							</select>
+
+						</div> -->
+
+						<div class="col-lg-9">
+							<ng-select [(ngModel)]="selectedCountry" class="form-control" (change)="getAllPaysRegion($event)" placeholder="{{userInfo.countryName}}">
+								<!-- <ng-option [value]="''" disabled>{{userInfo.countryName}}</ng-option> -->
+							  <ng-option [value]="p.id" *ngFor="let p of pays">{{ p.text }}</ng-option>
+							</ng-select>
+						</div>
+						  
+					</div>
+				</div>
+				
+			</div>
+			<div class="submit-section">
+				<button type="button" (click)="save()" class="btn btn-primary submit-btn">Save Changes</button>
+			</div>
+		</form>
+		<!-- /Profile Settings Form -->		
+	</div>
+</div>

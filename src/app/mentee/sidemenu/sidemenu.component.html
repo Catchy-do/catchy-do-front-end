@@ -1,0 +1,40 @@
+<!-- Sidebar -->
+<div class="profile-sidebar">
+	<div class="user-widget">
+		<div >
+			<img *ngIf="userImage==null"src="assets/img/user/avatar-user-male.png" alt="User Image">
+			<div class="avatar avatar-xxl me-1">
+				<img *ngIf="userImage!=null"  alt="User Image" src="{{userImage}}">
+			</div>
+		</div>
+		<div class="rating">
+			<i class="fas fa-star filled"></i>
+			<i class="fas fa-star filled"></i>
+			<i class="fas fa-star filled"></i>
+			<i class="fas fa-star filled"></i>
+			<i class="fas fa-star"></i>
+		</div>
+		<div class="user-info-cont">
+			<h4 *ngIf="userInfo!=null" class="usr-name">{{ userInfo.firstName + ' '+ userInfo.lastName }}</h4>
+			<p class="mentor-type">English Literature (M.A)</p>
+		</div>
+	</div>
+	<div class="progress-bar-custom">
+		<h6>Complete your profiles ></h6>
+		<div class="pro-progress">
+			<div class="tooltip-toggle" tabindex="0"></div>
+			<div class="tooltip">80%</div>
+		</div>
+	</div>
+	<div class="custom-sidebar-nav">
+		<ul>
+			<li><a [className]="(base === 'mentee' && page === 'dashboard') ? 'active' : ''" [routerLink]="'dashboard'"><i class="fas fa-home"></i>Dashboard <span><i class="fas fa-chevron-right"></i></span></a></li>
+			<li><a [className]="(base === 'mentee' && page === 'booking') ? 'active' : ''" [routerLink]="'booking'"><i class="fas fa-clock"></i>Bookings <span><i class="fas fa-chevron-right"></i></span></a></li>
+			<li><a [className]="(base === 'mentee' && page === 'favourites') ? 'active' : ''" [routerLink]="'favourites'"><i class="fas fa-star"></i>Favourites <span><i class="fas fa-chevron-right"></i></span></a></li>
+			<li><a [className]="(base === 'message') ? 'active' : ''" [routerLink]="'/message'"><i class="fas fa-comments"></i>Messages <span><i class="fas fa-chevron-right"></i></span></a></li>
+			<li><a [className]="(base === 'mentee' && page === 'settings') ? 'active' : ''" [routerLink]="'settings'"><i class="fas fa-user-cog"></i>Profile Settings<span><i class="fas fa-chevron-right"></i></span></a></li>
+			<li><a (click)="logout()" style="cursor: pointer;"><i class="fas fa-sign-out-alt"></i>Logout <span><i class="fas fa-chevron-right"></i></span></a></li>
+		</ul>
+	</div>
+</div>
+<!-- /Sidebar -->

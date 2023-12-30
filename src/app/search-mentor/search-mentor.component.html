@@ -1,0 +1,141 @@
+
+
+
+<!-- Page Content -->
+<div class="content">
+	<div class="container-fluid">
+
+		<div class="row">
+			<div class="col-md-12 col-lg-4 col-xl-3 theiaStickySidebar">
+
+				<!-- Search Filter -->
+				<div class="card search-filter">
+					<div class="card-header">
+						<h4 class="card-title mb-0">Search Filter</h4>
+					</div>
+					<div class="card-body">
+					<div class="filter-widget">
+						<div class="cal-icon">
+							 <input type="text" class="form-control" name="dp"  (click)="d.toggle()" placeholder="Select Date" ngbDatepicker #d="ngbDatepicker">
+						</div>
+					</div>
+					<div class="filter-widget">
+						<h4>Gender</h4>
+						<div>
+							<label class="custom_check">
+								<input type="checkbox" name="gender_type" value="Male" (click)="checkType($event)"  [checked]="type === 'Male'" >
+								<span class="checkmark"></span> Male
+							</label>
+						</div>
+						<div>
+							<label class="custom_check">
+								<input type="checkbox" name="gender_type" value="Female" [checked]="type === 'Female'"  (click)="checkType($event)">
+								<span class="checkmark"></span> Female
+							</label>
+						</div>
+					</div>
+					<div class="filter-widget">
+						<h4>Select Courses</h4>
+						<div  *ngFor="let s of specialityList" >
+							<label class="custom_check">
+								<input type="checkbox"  (click)="checkSpeciality($event)" name="select_specialist" 
+								[value]= "s.competenceId" [checked] >
+								<span class="checkmark"></span> {{s.intitule}}
+							</label>
+						</div>
+						
+					</div>
+						<div class="btn-search">
+							<button type="button" class="btn w-100" (click)="search()">Search</button>
+						</div>
+					</div>
+				</div>
+				<!-- /Search Filter -->
+
+			</div>
+
+			<div class="col-md-12 col-lg-8 col-xl-9">
+
+				<!-- Doctor Widget -->
+				<div class="card" *ngFor="let mentor of mentors?.slice(0,itemsToShow)" [hidden]="mentors.length === 0">
+					<!-- Mentor Widget -->
+					<div class="card-body">
+						<div class="mentor-widget">
+							<div class="user-info-left">
+								<div class="mentor-img">
+									<a [routerLink]="'/mentor-profile'" [queryParams]="{id: mentor.userId}">
+										<img *ngIf="mentor.imgUrl==null"src="assets/img/user/avatar-user-male.png"  class="img-fluid" alt="User Image">
+										<img  *ngIf="mentor.imgUrl!=null" src="{{mentor.imgUrl}}" class="img-fluid" alt="User Image">
+									</a>
+								</div>
+								<div class="user-info-cont">
+									<h4 class="usr-name"><a [routerLink]="'/mentor-profile'" [queryParams]="{id: mentor.userId}">{{mentor.firstName}}</a></h4>
+									<p class="mentor-type">{{mentor.niveau}}</p>
+									<div class="rating">
+										<i class="fas fa-star filled"></i>
+										<i class="fas fa-star filled"></i>
+										<i class="fas fa-star filled"></i>
+										<i class="fas fa-star filled"></i>
+										<i class="fas fa-star"></i>
+										<span class="d-inline-block average-rating">(17)</span>
+									</div>
+									<div class="mentor-details">
+										<p class="user-location"><i class="fas fa-map-marker-alt"></i>{{mentor.adresse}}</p>
+									</div>
+								</div>
+							</div>
+							<div class="user-info-right">
+								<div class="user-infos">
+									<ul>
+										<li><i class="far fa-comment"></i> 20/20</li>
+										<li><i class="fas fa-map-marker-alt"></i>{{mentor.adresse}}</li>
+										<!-- <li><i class="far fa-money-bill-alt"></i> {{mentor.lastName}} <i class="fas fa-info-circle" tooltip="Lorem Ipsum" placement="top"></i> </li> -->
+									</ul>
+								</div>
+								
+								<div class="mentor-booking">
+									<a class="apt-btn" (click)="openConfirmationPopup(mentor)">Book Appointment</a>
+									
+								</div>
+
+								<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog" [ngClass]="{'show': showConfirmationPopup}" [ngStyle]="{'display': showConfirmationPopup ? 'block' : 'none'}" >
+								  <div class="modal-dialog modal-dialog-centered">
+									<div class="modal-content">
+									  <div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Confirm Appointement</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="cancelAppointment()"></button>
+									  </div>
+									  <div class="modal-body">
+										voulez vous confirmez le rendez-vous ?
+									  </div>
+									  <div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cancelAppointment()">Close</button>
+										<button type="button" class="btn btn-primary" (click)="confirmAppointment()">Save changes</button>
+									  </div>
+									</div>
+								  </div>
+								  
+								
+									  
+								
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /Mentor Widget -->
+				</div>
+
+				<div class="load-more text-center" *ngIf="mentors.length !== 0 && load !== false" >
+					<a class="btn btn-primary btn-sm" href="javascript:void(0);" (click)="loadMore()">Load More</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+<!-- /Page Content -->
+
+
+
+<!-- Modal -->

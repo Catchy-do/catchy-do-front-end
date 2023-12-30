@@ -1,0 +1,101 @@
+<!-- Booking summary --> 
+  <h3 class="pb-3">Booking Summary</h3>
+  <!-- Mentee List Tab -->
+  <div class="tab-pane show active" id="mentee-list">
+    <div class="card card-table">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover table-center mb-0">
+            <thead>
+              <tr>
+                <th>Mentee List</th>
+                <th class="text-center">Scheduled Date</th>
+                <th class="text-center">Scheduled Timings</th>
+                <th class="text-center">Status</th>
+                <th class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let appointment of appointments">
+                <td>
+                  <h2 class="table-avatar">
+                    <a [routerLink]="'/mentor-profile'" class="avatar avatar-sm me-2">
+                      <img *ngIf="appointment.mentee.imgUrl!=null" class="avatar-img rounded-circle" src="{{appointment.mentee.imgUrl}}" alt="User Image">
+                      <img *ngIf="appointment.mentee.imgUrl==null"src="assets/img/user/avatar-user-male.png" alt="User Image"  class="avatar-img rounded-circle">
+                    </a>
+                    <a [routerLink]="'/mentor-profile'">{{appointment.mentee.firstName}}<span>{{appointment.mentee.email}}</span>
+                    </a>				
+                  </h2>
+                </td>
+                <td class="text-center"><span>{{appointment.scheduledDate | date : 'dd MMM yyyy'}}</span></td>
+                <td class="text-center"><span>{{appointment.scheduledtime}}</span></td>
+                <td class="text-center"><span class="p-1 mb-1 bg-success-light">{{appointment.status}}</span></td>
+                <td class="text-center"><a (click)="openModal(modal,appointment.appointmentId)"  data-bs-toggle="modal"  class="btn btn-sm bg-info-light"><i class="far fa-eye"></i> View</a></td>
+              </tr>                   
+            </tbody>
+          </table>
+
+
+          <!-- <div class="modal fade" id="exampleModal" tabindex="-1"  aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog" [ngClass]="{'show': showConfirmationPopup}" [ngStyle]="{'display': showConfirmationPopup ? 'block' : 'none'}">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Confirm Appointment</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="cancelAppointment()"></button>
+                </div>
+
+                <div class="modal-body">
+                  <input type="date" class="form-control" [(ngModel)]="selectedDate" >
+                  <span></span>
+                  <input type="time" class="form-control" [(ngModel)]="selectedTime">
+                </div>
+                <p>voulez-vous confirmer le rendez-vous?</p>
+
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cancelAppointment()">Close</button>
+                  <button type="button" class="btn btn-primary" (click)="confirmAppointment()">Save Changes</button>
+                </div>
+              </div>
+            </div>
+          </div> -->
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Mentee List Tab --> 
+<ng-template  #modal>
+  
+	
+	<div class="modal-content" >
+		<div class="modal-header">
+		  <h5 class="modal-title">Add Time Slots</h5>
+		  <button type="button" class="btn-close"  data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+		</div>
+		<div class="modal-body">
+		  
+			<input type="date" class="form-control" [(ngModel)]="selectedDate">
+			<span></span>
+			<input type="time" class="form-control" [(ngModel)]="selectedTime">
+			<div class="submit-section text-center">
+			  <a type="button"(click)="confirmAppointment()" class="btn btn-primary submit-btn" data-bs-dismiss="modal"  aria-label="Close">Save Changes</a>
+			</div>
+		  
+		</div>
+	</div>
+  
+  
+	
+  
+</ng-template>
+
+ 
+ 
+
+
+
+
+
+
+
+<!-- /Booking summary -->

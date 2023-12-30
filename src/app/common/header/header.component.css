@@ -1,0 +1,13 @@
+.main-nav{
+    list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 0px;
+ 
+
+}
+
+.disabled {
+  color: gray; /* Or any other style you want to apply */
+  pointer-events: none; /* This prevents interactions with the item */
+}

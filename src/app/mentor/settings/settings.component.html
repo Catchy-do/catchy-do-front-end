@@ -1,0 +1,205 @@
+<!-- Page Content -->            
+<div class="col-md-12">
+    <div *ngIf="!userInfo.isConfirmed"class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Warning!</strong> Your a count is not yet verified.
+       
+    </div>
+    <div class="card">
+        <div class="card-body">
+         
+            <!-- Profile Settings Form -->
+            <form>
+                <div class="row form-row" [formGroup]="mentorSettingsForm" >
+                    <div class="col-12 col-md-12">
+                        <div class="form-group">
+                            <div class="change-avatar">
+                                <div class="profile-img">
+                                    <img *ngIf="userImage==null"src="assets/img/user/avatar-user-male.png" alt="User Image">
+                                    <img *ngIf="userImage!=null"src="{{userImage}}" alt="User Image">
+                                </div>
+                                <div class="upload-img" *ngIf="!confimeChange">
+                                    <div class="change-photo-btn">
+                                        <span><i class="fa fa-upload"></i> Upload Photo</span>
+                                        <input type="file" class="upload" (change)="onChange($event)">
+                                    </div>
+                                    
+                                </div>
+                                <div class="form-group" *ngIf="confimeChange"  (click)="upload()">
+                                    <div class="change-photo-btn floated" style=" background-color:darkgreen;">
+                                        <span><i class="fa fa-check" ></i> Confirme</span>
+                                         
+                                    </div>
+                                    <div  class="change-photo-btn floated" style=" background-color: chocolate;" (click)="cancel()">
+                                        <span><i class="fa fa-cancel " ></i> Cancel</span>
+                                         
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input type="text" class="form-control"  [(ngModel)]="userInfo.firstName"
+                            formControlName="firstName" >
+                            
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input type="text" class="form-control"  [(ngModel)]="userInfo.lastName" 
+                            formControlName="lastName">
+                            
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label>Date of Birth</label>
+                            <div class="cal-icon">
+                                <input type="text" class="form-control datetimepicker" [(ngModel)]="userInfo.dateOfBirth"
+                                formControlName="dateOfBirth">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label>Email ID</label>
+                            <input type="email" class="form-control" [(ngModel)]="userInfo.email" formControlName="email">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label>Mobile</label>
+                            <input type="text" [(ngModel)]="userInfo.phoneNumber" class="form-control" formControlName="phoneNumber">
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                        <label>Address</label>
+                            <input type="text" class="form-control" [(ngModel)]="userInfo.adresse" formControlName="adresse">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label>Ville</label>
+                            <!-- <input type="text" class="form-control" [(ngModel)]="userInfo.ville" formControlName="ville"> -->
+                            <div class="col-lg-9">
+                                <select class="form-control" [(ngModel)]="userInfo.villeID" name="villeID"
+                                    formControlName="villeID" required 
+                                    [ngClass]=" ! mentorSettingsForm.controls['villeID'].valid ? 'form-control is-invalid' : 'form-control is-valid' ">
+                                    <option [ngValue]="ville.id"  *ngFor="let ville of villes">
+                                        {{ville.text}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label>Region</label>
+                            <!-- <input type="text" class="form-control" [(ngModel)]="userInfo.region" formControlName="region"> -->
+                            <div class="col-lg-9">
+                                <select [ngModel]="regions" class="form-control"
+                                    (ngModelChange)="getAllRVille($event)" name="sel3"
+                                     data-select2-id="1" tabindex="-4" [ngModelOptions]="{standalone: true}"
+                                    aria-hidden="true" >
+    
+                                    <option [ngValue]="reg.id" *ngFor="let reg of regions" value="{{reg.id}}">
+                                        {{reg.text}}</option>
+    
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label>Zip Code</label>
+                            <input type="text" class="form-control" [(ngModel)]="userInfo.zipCode" formControlName="zipCode">
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label>Country</label>
+                            <!-- <input type="text" class="form-control" [(ngModel)]="userInfo.countryName" formControlName="pays"> -->
+                            <div class="col-lg-9">
+                                <select [(ngModel)]="selectedCountry" class="form-control"
+                                    (change)="getAllPaysRegion($event)" name="sel2"
+                                    [ngModelOptions]="{standalone: true}">
+                                    <option [ngValue]="p" *ngFor="let p of pays">{{p.text}}</option>
+                                </select>
+    
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-12 col-md-6">
+                        <div class="form-group">
+                            <label>Niveau</label>
+                            <select class="form-select" [(ngModel)]="userInfo.niveau" formControlName="niveau" >
+                                <option value="nv1">1</option>
+                                <option value="nv2">2</option>
+                                <option value="nv3">3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- <div class="col-12 col-md-6">
+                        <label>Competences</label>
+                        <select [(ngModel)]="selectedCompetence" class="form-select"
+                        formControlName="competences" multiple>
+                            <option [ngValue]="c" *ngFor="let c of competencesList">{{c.intitule}}</option>
+                        </select>
+                    </div> -->
+                    <div class="col-12 col-md-6">
+                        <label>Competences</label>
+                        <ng-select [(ngModel)]="selectedCompetence" class="form-select"
+                        formControlName="competences" [multiple]="true" >
+                            <ng-option [value]="c" *ngFor="let c of competencesList" >{{c.intitule}}</ng-option>
+                        </ng-select>
+                    </div>                   
+                    
+                </div>
+                <br>
+                
+                <div class="row">
+                    <!-- <div class="col-8" >
+                        <label class="btn btn-secondary me-1">
+                        <input type="file" multiple (change)="selectFiles($event)"  />
+                        </label>
+
+                    </div> -->
+                    
+                    <div class="form-group row">
+                       
+                        <div class="col-md-8">
+                            <input class="form-control" type="file" multiple (change)="selectFiles($event)">
+                        </div>
+                        <div class="col-md-4">
+                            <button
+                            class="btn btn-primary submit-md-btn"
+                            [disabled]="!selectedFiles"
+                            (click)="uploadFiles()"
+                            >
+                            Upload
+                            </button>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                
+                <br>
+                <br>
+                  
+
+
+                <div class="submit-section">
+                    <button type="button" (click)="save()" class="btn btn-primary submit-btn">Save Changes</button>
+                </div>
+            </form>
+            <!-- /Profile Settings Form -->
+            
+        </div>
+    </div>
+</div>	
+<!-- /Page Content -->

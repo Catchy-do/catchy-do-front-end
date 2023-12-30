@@ -1,0 +1,100 @@
+ <div class="page-wrapper">
+	<div class="content container-fluid">
+		<!-- Page Header -->
+		<div class="page-header">
+			<div class="row">
+				<div class="col-sm-12">
+					<h3 class="page-title">List of Mentors</h3>
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item"><a [routerLink]="'/admin'">Dashboard</a></li>
+						<li class="breadcrumb-item"><a href="javascript:(0);">Users</a></li>
+						<li class="breadcrumb-item active">Mentor</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- /Page Header -->
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="table-responsive" *ngIf="mentorsList">
+							<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="datatable table table-hover table-center mb-0">
+								<thead>
+									<tr>
+										<th>Mentor Name</th>
+										<!-- <th>Course</th> -->
+										<th>Member Since</th>
+										<th>Account Status</th>
+
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let mentor of mentorsList; let i = index">
+										<td>
+											<h2 class="table-avatar">
+												<a  class="avatar avatar-sm me-2">
+													<img *ngIf="mentor.imgUrl!=null" class="avatar-img rounded-circle" [src]="mentor.imgUrl" alt="User Image">
+													<img *ngIf="mentor.imgUrl==null"src="assets/img/user/avatar-user-male.png" alt="User Image"  class="avatar-img rounded-circle">
+												</a>
+												
+												
+												<a>{{mentor.firstName}}</a>
+											</h2>
+										</td>
+										<!-- <td>{{mentor.speciality}}</td> -->
+										<td>{{mentor.since | date : 'dd MMM yyyy'}}<br><small>{{mentor.since | date : 'hh mm a'}}</small></td>
+
+										
+										
+
+										<td>
+											<div class="status-toggle">
+												<input type="checkbox" id="status_{{i + 1}}" class="check"  [(ngModel)]="mentor.isConfirmed"  (click)="openModal(modal)" >
+												<label for="status_{{i + 1}}" class="checktoggle">checkbox</label>
+												<!-- <label for="status_{{i + 1}}">{{mentor.isConfirmed}}</label> -->
+											</div>
+										</td>
+
+										<ng-template  #modal>
+											<div class="modal-content" >
+												<div class="modal-header">
+												  <h5 class="modal-title">Confirm Mentor</h5>
+												  <button type="button" class="btn-close"  data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
+												</div>
+												<div class="modal-body">
+												  
+													<p *ngIf="mentor.isConfirmed">Are you sure to Confirm {{mentor.firstName}} ?</p>
+													<p *ngIf="!mentor.isConfirmed">Are you sure to Deactivate {{mentor.firstName}} ?</p>
+													<span></span>
+													
+													<div class="submit-section text-center">
+													  <a type="button" class="btn btn-rounded btn-primary me-2" data-bs-dismiss="modal"  aria-label="Confirm" (click)="updateStatus(mentor.isConfirmed, mentor.userId)">Confirm</a>
+													  <a type="button"class="btn btn-rounded btn-secondary me-2" data-bs-dismiss="modal"  aria-label="Close" (click)="closeModal()">Cancel</a>
+													</div>
+												  
+												</div>
+											</div>
+										  
+										  
+											
+										  
+										</ng-template>
+									</tr>
+
+									
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+

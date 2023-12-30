@@ -1,0 +1,245 @@
+<!-- Page Content -->
+<div class="bg-pattern-style bg-pattern-style-register">
+	<div class="content">
+
+		<!-- Register Content -->
+		<div class="account-content">
+			<div class="account-box">
+				<div class="login-right">
+					<div class="login-header">
+						<h3>{{reg_type}} <a href="javascript:void(0)" (click)="changeRegType()">{{isMentor}}</a></h3>
+						<p class="text-muted">Accéder à notre tableau de bord</p>
+					</div>
+
+					<!-- Register Form -->
+					<!-- <form action="#"> -->
+					<div [formGroup]="registrationForm">
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="form-group row">
+									<label class="form-control-label">First Name</label>
+									<div class="input-group">
+										<input id="firstName" type="text" placeholder="First Name" name="firstName"
+											formControlName="firstName" [(ngModel)]="userInfo.firstName" required
+											[ngClass]=" ! registrationForm.controls['firstName'].valid ? 'form-control is-invalid' : 'form-control is-valid' ">
+										<div class="input-group-append">
+											<span class="input-group-text">
+												<a><i class="fas fa-user"></i></a>
+											</span>
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="col-lg-6">
+								<div class="form-group row">
+									<label class="form-control-label">Last Name</label>
+									<div class="input-group">
+										<input id="lastName" type="text" placeholder="Last Name" name="lastName"
+											formControlName="lastName" [(ngModel)]="userInfo.lastName" required
+											[ngClass]=" ! registrationForm.controls['lastName'].valid ? 'form-control is-invalid' : 'form-control is-valid' ">
+										<div class="input-group-append">
+											<span class="input-group-text">
+												<a><i class="fas fa-user"></i></a>
+											</span>
+										</div>
+
+
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="form-group row">
+									<label class="form-control-label">Username</label>
+									<div class="input-group ">
+										<input id="Username" type="text" placeholder="Username" name="User-name"
+											formControlName="username" [(ngModel)]="userInfo.username"
+											[ngClass]=" ! registrationForm.controls['username'].valid ? 'form-control is-invalid' : 'form-control is-valid' "
+											>
+										<div class="input-group-append">
+											<span class="input-group-text">
+												<a><i class="fas fa-user"></i></a>
+											</span>
+										</div>
+
+
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="form-group row">
+									<label class="form-control-label">E-mail</label>
+									<div class="input-group ">
+										<input id="email" type="text" placeholder="Email" name="email"
+											formControlName="email" [(ngModel)]="userInfo.email" required
+											[ngClass]=" ! registrationForm.controls['email'].valid ? 'form-control is-invalid' : 'form-control is-valid' "
+											>
+										<div class="input-group-append">
+											<span class="input-group-text">
+												<a><i class="fa fa-envelope "></i></a>
+											</span>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="form-group row">
+									<label class="form-control-label">Password</label>
+									<div class="input-group" id="show_hide_password">
+
+										<input id="password" [type]="checked ? 'password' : 'text'" class="form-control"
+											placeholder="Password" formControlName="password" required
+											[(ngModel)]="userInfo.password"  />
+										<div class="input-group-append">
+											<span class="input-group-text">
+												<a><i class="fa fa-eye-slash" aria-hidden="true"
+														(click)="checked = !checked"></i></a>
+											</span>
+										</div>
+									</div>
+									<small class="form-text text-danger"
+										*ngIf="registrationForm.controls['password'].hasError('pattern')">* </small>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="form-group row">
+									<label class="form-control-label">Confirm Password</label>
+									<div class="input-group" id="show_hide_password_confirm">
+
+										<input [type]="checked ? 'password' : 'text'" class="form-control"
+											placeholder=" Confirm Password" formControlName="passwordConf"
+											[(ngModel)]="passwordConf" (ngModelChange)="onChangePass($event)" />
+										<div class="input-group-append">
+											<span class="input-group-text">
+												<a><i class="fa fa-eye-slash " aria-hidden="true"
+														(click)="checked = !checked"></i></a>
+											</span>
+										</div>
+									</div>
+									<small class="form-text text-danger"
+										*ngIf="registrationForm.controls['passwordConf'].hasError('pattern')">* </small>
+								</div>
+							</div>
+							<small class="form-text text-danger" *ngIf="message">Mot de passe est incorrect</small>
+
+						</div>
+						<div class="row">
+							<div class="col-xl-6">
+								<div class="form-group row">
+
+									<label class="col-lg-3 col-form-label">Country</label>
+									<div class="col-lg-9">
+										<select [(ngModel)]="selectedCountry" class="form-control"
+											(change)="getAllPaysRegion($event)" name="sel2"
+											[ngModelOptions]="{standalone: true}">
+											<option [ngValue]="p" *ngFor="let p of pays">{{p.text}}</option>
+										</select>
+
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label">Region</label>
+									<div class="col-lg-9">
+										<select [ngModel]="regions" class="form-control"
+											(ngModelChange)="getAllRVille($event)" name="sel3"
+											[ngModelOptions]="{standalone: true}" data-select2-id="1" tabindex="-4"
+											aria-hidden="true">
+
+											<option [ngValue]="reg.id" *ngFor="let reg of regions" value="{{reg.id}}">
+												{{reg.text}}</option>
+
+										</select>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label">Ville</label>
+									<div class="col-lg-9">
+										<select class="form-control" [(ngModel)]="userInfo.villeID" name="villeID"
+											formControlName="villeID" required
+											[ngClass]=" ! registrationForm.controls['villeID'].valid ? 'form-control is-invalid' : 'form-control is-valid' ">
+
+											<option [ngValue]="ville.id" *ngFor="let ville of villes">{{ville.text}}
+											</option>
+
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-xl-6">
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label">Gender</label>
+									<div class="col-lg-9">
+										<select class="form-select" [(ngModel)]="userInfo.sexe"
+												 formControlName="sexe">
+											<option value="Male">Male</option>
+											<option value="Female"> Female</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label">phone</label>
+									<div class="col-lg-9">
+										<input id="phoneNumber" type="text" placeholder="phone Number"
+											name="phoneNumber" formControlName="phoneNumber"
+											[(ngModel)]="userInfo.phoneNumber" 
+											[ngClass]=" ! registrationForm.controls['phoneNumber'].valid ? 'form-control is-invalid' : 'form-control is-valid' ">
+									</div>
+								</div>
+								<div class="form-group row">
+									<label class="col-lg-3 col-form-label">Adresse</label>
+									<div class="col-lg-9">
+										<input id="adresse" type="text" class="form-control" placeholder="Adresse"
+											name="adresse" formControlName="adresse" [(ngModel)]="userInfo.adresse">
+									</div>
+								</div>
+
+							</div>
+							<div class="row" *ngIf="hide">
+								<div class="col-12 col-md-6">
+									<div class="form-group">
+										<label>Niveau</label>
+										<select class="form-select" [(ngModel)]="userInfo.niveau" formControlName="niveau" >
+											<option value="Primaire">Primaire</option>
+											<option value="Secondaire">Secondaire</option>
+											<option value="Universitaire">Universitaire</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-12 col-md-6" >
+									<label>Competences</label>
+									<ng-select [(ngModel)]="selectedCompetence" class="form-select"
+									formControlName="competences" [multiple]="true" >
+										<ng-option [value]="c" *ngFor="let c of competencesList" >{{c.intitule}}</ng-option>
+									</ng-select>
+								</div>	
+
+								
+
+							</div>
+						</div>
+
+
+					</div>
+					<div class="left-btn">
+						<button type="button" routerLink="/index" class="btn btn-secondary">cancel</button>
+					</div>
+					<div class="right-btn">
+						<button (click)="signup()" [disabled]="registrationForm.invalid || message" type="submit"
+							class="btn btn-primary">confirm</button>
+					</div>
+					<!-- /Register Form -->
+				</div>
+			</div>
+		</div>
+		<!-- /Register Content -->
+	</div>
+</div>
+<!-- /Page Content -->

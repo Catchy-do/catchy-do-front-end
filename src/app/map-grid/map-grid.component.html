@@ -1,0 +1,136 @@
+<!-- Page Content -->
+<div class="content" id="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div [className]="mapGrid ? 'col-xl-6 col-lg-12 order-md-last order-sm-last order-last map-left' : 'col-xl-7 col-lg-12 order-md-last order-sm-last order-last map-left'">
+                <div class="row align-items-center mb-4">
+                    <div class="col-md-6 col">
+                        <h4>2245 Doctors found</h4>
+                    </div>
+
+                    <div class="col-md-6 col-auto">
+                        <div class="view-icons ">
+                            <a (click)="mapGridClick()" id="grid-view" class="grid-view active"><i class="fas fa-th-large"></i></a>
+                            <a (click)="mapListClick()" id="list-view" class="list-view"><i class="fas fa-bars"></i></a>
+                        </div>
+                        <div class="sort-by d-sm-block d-none">
+                            <span class="sortby-fliter">
+                                <ng-select2  width="100%">
+                                    <option>Select</option>
+                                        <option class="sorting">Rating</option>
+                                        <option class="sorting">Popular</option>
+                                        <option class="sorting">Latest</option>
+                                        <option class="sorting">Free</option>
+                                </ng-select2>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="mapGrid">
+                    <div class="col-sm-6 col-md-4 col-xl-6" *ngFor="let mentor of mentors">
+                        <div class="profile-widget">
+                            <div class="user-avatar">
+                                <a [routerLink]="'/mentor-profile'">
+                                    <img class="img-fluid" alt="User Image" src="{{mentor.profile}}">
+                                </a>
+                                <a href="javascript:void(0)" class="fav-btn">
+                                    <i class="far fa-bookmark"></i>
+                                </a>
+                            </div>
+                            <div class="pro-content">
+                                <h3 class="title">
+                                    <a [routerLink]="'/mentor-profile'">{{mentor.doctor_name}}</a>
+                                    <i class="fas fa-check-circle verified"></i>
+                                </h3>
+                                <p class="speciality">{{mentor.Education}}</p>
+                                <div class="rating">
+                                    <i class="fas fa-star filled"></i>
+                                    <i class="fas fa-star filled"></i>
+                                    <i class="fas fa-star filled"></i>
+                                    <i class="fas fa-star filled"></i>
+                                    <i class="fas fa-star filled"></i>
+                                    <span class="d-inline-block average-rating">(17)</span>
+                                </div>
+                                <ul class="available-info">
+                                    <li>
+                                        <i class="fas fa-map-marker-alt"></i> {{mentor.location}}
+                                    </li>
+                                    <li>
+                                        <i class="far fa-clock"></i>{{mentor.Available}}
+                                    </li>
+                                    <li>
+                                        <i class="far fa-money-bill-alt"></i> {{mentor.consulting_fees}} - {{mentor.Price}} <i class="fas fa-info-circle" tooltip="Lorem Ipsum" placement="top"></i>
+                                    </li>
+                                </ul>
+                                <div class="row row-sm">
+                                    <div class="col-6">
+                                        <a [routerLink]="'/mentor-profile'" class="btn view-btn">View Profile</a>
+                                    </div>
+                                    <div class="col-6">
+                                        <a [routerLink]="'/book-now'" class="btn book-btn">Book Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" *ngIf="mapList">
+                    <!-- Doctor Widget -->
+                    <div class="col-sm-12 col-md-10 col-xl-12" *ngFor="let mentor of mentors">
+                        <div class="card">
+							<div class="card-body">
+								<div class="mentor-widget">
+									<div class="user-info-left">
+										<div class="mentor-img">
+											<a [routerLink]="'/mentor-profile'">
+                                                <img src="{{mentor.profile}}" class="img-fluid" alt="User Image">
+                                            </a>
+										</div>
+										<div class="user-info-cont">
+											<h4 class="usr-name"><a [routerLink]="'/mentor-profile'">{{mentor.doctor_name}}</a></h4>
+											<p class="mentor-type">{{mentor.Education}}</p>
+											<div class="rating">
+												<i class="fas fa-star filled"></i>
+												<i class="fas fa-star filled"></i>
+												<i class="fas fa-star filled"></i>
+												<i class="fas fa-star filled"></i>
+												<i class="fas fa-star"></i>
+												<span class="d-inline-block average-rating">(17)</span>
+											</div>
+											<div class="mentor-details">
+												<p class="user-location"><i class="fas fa-map-marker-alt"></i> {{mentor.location}}</p>
+											</div>
+										</div>
+									</div>
+									<div class="user-info-right">
+										<div class="user-infos">
+											<ul>
+												<li><i class="far fa-comment"></i> 17 Feedback</li>
+												<li><i class="fas fa-map-marker-alt"></i> {{mentor.location}}</li>
+												<li><i class="far fa-money-bill-alt"></i> {{mentor.consulting_fees}} - {{mentor.Price}} <i class="fas fa-info-circle" tooltip="Lorem Ipsum" placement="top"></i> </li>
+											</ul>
+										</div>
+										<div class="mentor-booking">
+											<a class="apt-btn" [routerLink]="'/mentee/booking'">Book Appointment</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+                    </div>
+                </div>
+
+                <div class="load-more text-center">
+                    <a class="btn btn-primary btn-sm" href="javascript:void(0);">Load More</a>
+                </div>
+                </div>
+                <!-- /content-left-->
+                <div [className]="mapGrid ? 'col-xl-6 col-lg-12 map-right' : 'col-xl-5 col-lg-12 map-right'">
+                    <div id="map" class="map-listing"></div>
+                </div>
+                <!-- /map-right-->
+            </div>
+        <!-- /row-->
+    </div>
+</div>
+<!-- /Page Content -->

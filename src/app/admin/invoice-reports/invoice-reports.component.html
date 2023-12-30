@@ -1,0 +1,76 @@
+<div class="page-wrapper">
+	<div class="content container-fluid">
+
+		<div class="page-header">
+			<div class="row">
+				<div class="col-sm-12">
+					<h3 class="page-title">Invoice Report</h3>
+					<ul class="breadcrumb">
+						<li class="breadcrumb-item"><a [routerLink]="'/admin'">Dashboard</a></li>
+						<li class="breadcrumb-item active">Invoice Report</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="card">
+					<div class="card-body">
+						<div class="table-responsive">
+							<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="datatable table table-hover table-center mb-0">
+								<thead>
+									<tr>
+										<th>Invoice Number</th>
+										<th>Patient ID</th>
+										<th>Patient Name</th>
+										<th>Total Amount</th>
+										<th class="text-center">Status</th>
+										<th class="text-end">Actions</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let trans of transactions">
+										<td><a [routerLink]="''">{{trans.invoiceNumber}}</a></td>
+										<td>{{trans.patient_id}}</td>
+										<td>
+											<h2 class="table-avatar">
+												<a class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" [src]="trans.profile" alt="User Image"></a>
+												<a  [routerLink]="'/admin/mentor-profile'">{{trans.patient_name}} </a>
+											</h2>
+										</td>
+										<td>{{trans.total_amount}}</td>
+										<td class="text-center">
+											<span class="badge rounded-pill bg-success inv-badge">{{trans.status}}</span>
+										</td>
+										<td class="text-end">
+											<div class="actions">
+												<a data-bs-toggle="modal" (click)="deleteModal(delete,trans)"
+                                                    class="btn btn-sm bg-danger-light">
+                                                    <i class="fe fe-trash"></i> Delete
+                                                </a>
+											</div>
+										</td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<ng-template #delete>
+	<div class="modal-body text-center">
+		<div class="form-content p-2">
+			<h4 class="modal-title">Delete</h4>
+			<p class="mb-4">Are you sure want to delete?</p>
+			<button type="button" class="btn btn-primary me-2" (click)="deleteReport()">Delete </button>
+			<button type="button" class="btn btn-danger" (click)="decline()" >Close</button>
+		</div>
+	</div>
+</ng-template>

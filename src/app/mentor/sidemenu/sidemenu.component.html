@@ -1,0 +1,47 @@
+<!-- /Sidebar -->
+<div class="profile-sidebar">
+    <div class="user-widget">
+        <div>
+			<img *ngIf="userImage==null"src="assets/img/user/avatar-user-male.png" alt="User Image">
+			<div class="avatar avatar-xxl me-1">
+				<img *ngIf="userImage!=null" class="avatar-img rounded-circle" alt="User Image" src="{{userImage}}">
+			</div>
+		</div>
+        <div class="rating">
+            <i class="fas fa-star filled"></i>
+            <i class="fas fa-star filled"></i>
+            <i class="fas fa-star filled"></i>
+            <i class="fas fa-star filled"></i>
+            <i class="fas fa-star"></i>
+        </div>
+        <div class="user-info-cont">
+            <h4 class="usr-name">{{ userInfo.firstName + ' '+ userInfo.lastName}}</h4>
+            <p class="mentor-type">{{competences}}</p>
+        </div>
+    </div>
+    <div class="progress-bar-custom">
+        <h6>Complete your profiles ></h6>
+        <div class="pro-progress">
+            <div class="tooltip-toggle" tabindex="0"></div>
+            <div class="tooltip">80%</div>
+        </div>
+    </div>
+    <div class="custom-sidebar-nav">
+        <ul>
+            
+            <li><a [ngClass]="{ 'disabled': !isConfirmed }"  [className]="(base === 'mentor' && page === 'dashboard' ) ? 'active' : ''" [routerLink]="'dashboard'"><i class="fas fa-home"></i>Dashboard <span><i class="fas fa-chevron-right"></i></span></a></li>
+            <li><a [ngClass]="{ 'disabled': !isConfirmed }" [className]="(base === 'mentor' && page === 'my-bookings') ? 'active' : ''" [routerLink]="'my-bookings'"><i class="fas fa-clock"></i>Bookings <span><i class="fas fa-chevron-right"></i></span></a></li>
+            <li><a [ngClass]="{ 'disabled': !isConfirmed }" [className]="(base === 'mentor' && page === 'schedule-timing') ? 'active' : ''" [routerLink]="'schedule-timing'"><i class="fas fa-hourglass-start"></i>Schedule Timings <span><i class="fas fa-chevron-right"></i></span></a></li>
+            <li><a [ngClass]="{ 'disabled': !isConfirmed }" [className]="(base === 'mentor' && page === 'mentees') ? 'active' : ''" [routerLink]="'mentees'"><i class="fas fa-users"></i>Mentee List <span><i class="fas fa-chevron-right"></i></span></a></li>
+            <li><a [ngClass]="{ 'disabled': !isConfirmed }" [className]="(base === 'mentor' && page === 'blog') ? 'active' : ''" [routerLink]="'blog'"><i class="fab fa-blogger-b"></i>Blog <span><i class="fas fa-chevron-right"></i></span></a></li>
+            <li><a [ngClass]="{ 'disabled': !isConfirmed }" [className]="(base === 'mentor' && page === 'message') ? 'active' : ''" [routerLink]="'/message'"><i class="fas fa-comments"></i>Messages <span><i class="fas fa-chevron-right"></i></span></a></li>
+            <li><a [ngClass]="{ 'disabled': !isConfirmed }" [className]="(base === 'mentor' && page === 'invoice') ? 'active' : ''" [routerLink]="'invoice'"><i class="fas fa-file-invoice"></i>Invoices <span><i class="fas fa-chevron-right"></i></span></a></li>
+            <li><a [ngClass]="{ 'disabled': !isConfirmed }" [className]="(base === 'mentor' && page === 'reviews') ? 'active' : ''" [routerLink]="'reviews'"><i class="fas fa-eye"></i>Reviews <span><i class="fas fa-chevron-right"></i></span></a></li>
+            
+            <li><a [className]="(base === 'mentor' && page === 'settings') ? 'active' : ''" [routerLink]="'settings'"><i class="fas fa-user-cog"></i>Profile Settings<span><i class="fas fa-chevron-right"></i></span></a></li>
+            <li><a (click)="logout()" style="cursor: pointer;"><i class="fas fa-sign-out-alt"></i>Logout <span><i class="fas fa-chevron-right"></i></span></a></li>
+        </ul>
+    </div>
+</div>
+<!-- /Sidebar -->
+
