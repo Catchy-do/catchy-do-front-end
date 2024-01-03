@@ -5,10 +5,10 @@ env:
 on:
   push:
     branches:
-      - "Development"
+      - "development"
   pull_request:
     branches:
-      - "Development"  
+      - "development"  
 jobs:
   docker:
     runs-on: ubuntu-latest
