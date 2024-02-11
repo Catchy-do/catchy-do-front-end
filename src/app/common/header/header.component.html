@@ -78,7 +78,7 @@
                     <a [ngClass]="{ 'disabled': !isConfirmed }" [routerLink]="'/mentor/my-bookings'">Réservations</a>
                   </li>
                   <li [class.active]="base === 'mentor' && page === 'mentees'">
-                    <a [ngClass]="{ 'disabled': !isConfirmed }" [routerLink]="'/mentor/mentees'">Mentee List</a>
+                    <a [ngClass]="{ 'disabled': !isConfirmed }" [routerLink]="'/mentor/mentees'"> Liste des Apprenants </a>
                   </li>
                   <li [class.active]="base === 'mentor' && page === 'schedule-timing'">
                     <a [ngClass]="{ 'disabled': !isConfirmed }" [routerLink]="'/mentor/schedule-timing'">Calendrier</a>
@@ -94,9 +94,9 @@
                         <a href="javascript:void(0)">Blog</a>
                         <ul class="submenu">
                           <li><a [routerLink]="'/mentor/blog'">Blog</a></li>
-                          <li><a [routerLink]="'/blog'">Blog View</a></li>
-                          <li><a [routerLink]="'/mentor/add-blog'">Add Blog</a></li>
-                          <li><a [routerLink]="'/mentor/edit-blog'">Edit Blog</a></li>
+                          <li><a [routerLink]="'/blog'">Voir Blog</a></li>
+                          <li><a [routerLink]="'/mentor/add-blog'">Ajouter Blog</a></li>
+                          <li><a [routerLink]="'/mentor/edit-blog'">Modifier Blog</a></li>
                         </ul>
                       </li>
                     </ul>
@@ -108,7 +108,7 @@
                     <ul class="submenu" id="pages">
                       <li><a [routerLink]="'/voice-call'">Appel Vocal</a></li>
                       <li><a [routerLink]="'/video-call'">Appel Video</a></li>
-                      <li><a [routerLink]="'/search-mentor'">Rechercher des Tuteurs(ices)</a></li>
+                      <li><a [routerLink]="'/search-mentor'">Recherche Tuteur</a></li>
                       <li><a [routerLink]="'/component'">Composants</a></li>
                       <li class="has-submenu">
                         <a href="javascript:void(0)">Factures</a>
@@ -139,7 +139,7 @@
                     <a [routerLink]="'mentee/booking'">Réservations</a>
                   </li>
                   <li>
-                    <a [routerLink]="'/search-mentor'">Rechercher des Tuteurs(ices)</a>
+                    <a [routerLink]="'/search-mentor'">Recherche Tuteur</a>
                   </li>
                   <li>
                     <a [routerLink]="'/mentee/favourites'">Favoris</a>
@@ -155,9 +155,9 @@
                         <a href="javascript:void(0)">Blog</a>
                         <ul class="submenu">
                           <li><a [routerLink]="'/mentee/blog'">Blog</a></li>
-                          <li><a [routerLink]="'/blog'">Blog View</a></li>
-                          <li><a [routerLink]="'/mentee/add-blog'">Add Blog</a></li>
-                          <li><a [routerLink]="'/mentee/edit-blog'">Edit Blog</a></li>
+                          <li><a [routerLink]="'/blog'"> Voir Blog</a></li>
+                          <li><a [routerLink]="'/mentee/add-blog'">Ajouter Blog</a></li>
+                          <li><a [routerLink]="'/mentee/edit-blog'">Modifier Blog</a></li>
                         </ul>
                       </li>
                     </ul>
@@ -168,7 +168,7 @@
                     <ul class="submenu" id="pages">
                       <li><a [routerLink]="'/voice-call'">Appel Vocal</a></li>
                       <li><a [routerLink]="'/video-call'">Appel Video</a></li>
-                      <li><a [routerLink]="'/search-mentor'">Rechercher des Tuteurs(ices)</a></li>
+                      <li><a [routerLink]="'/search-mentor'">Recherche Tuteur</a></li>
                       <li><a [routerLink]="'/component'">Composants</a></li>
                       <li class="has-submenu">
                         <a href="javascript:void(0)">Factures</a>
