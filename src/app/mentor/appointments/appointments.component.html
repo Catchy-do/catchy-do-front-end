@@ -1,5 +1,5 @@
 <!-- Booking summary --> 
-  <h3 class="pb-3">Booking Summary</h3>
+  <h3 class="pb-3"> Réservations</h3>
   <!-- Mentee List Tab -->
   <div class="tab-pane show active" id="mentee-list">
     <div class="card card-table">
@@ -8,11 +8,11 @@
           <table class="table table-hover table-center mb-0">
             <thead>
               <tr>
-                <th>Mentee List</th>
-                <th class="text-center">Scheduled Date</th>
-                <th class="text-center">Scheduled Timings</th>
-                <th class="text-center">Status</th>
-                <th class="text-center">Action</th>
+                <th> Liste d'Apprenant(e)s</th>
+                <th class="text-center"> Dates Plannifiées</th>
+                <th class="text-center"> Créneaux Plannifiés</th>
+                <th class="text-center">Statut</th>
+                <th class="text-center">Réponses</th>
               </tr>
             </thead>
             <tbody>
@@ -30,7 +30,7 @@
                 <td class="text-center"><span>{{appointment.scheduledDate | date : 'dd MMM yyyy'}}</span></td>
                 <td class="text-center"><span>{{appointment.scheduledtime}}</span></td>
                 <td class="text-center"><span class="p-1 mb-1 bg-success-light">{{appointment.status}}</span></td>
-                <td class="text-center"><a (click)="openModal(modal,appointment.appointmentId)"  data-bs-toggle="modal"  class="btn btn-sm bg-info-light"><i class="far fa-eye"></i> View</a></td>
+                <td class="text-center"><a (click)="openModal(modal,appointment.appointmentId)"  data-bs-toggle="modal"  class="btn btn-sm bg-info-light"><i class="far fa-eye"></i> Voir</a></td>
               </tr>                   
             </tbody>
           </table>
@@ -69,7 +69,7 @@
 	
 	<div class="modal-content" >
 		<div class="modal-header">
-		  <h5 class="modal-title">Add Time Slots</h5>
+		  <h5 class="modal-title">Ajout Créneau</h5>
 		  <button type="button" class="btn-close"  data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
 		</div>
 		<div class="modal-body">
@@ -78,7 +78,7 @@
 			<span></span>
 			<input type="time" class="form-control" [(ngModel)]="selectedTime">
 			<div class="submit-section text-center">
-			  <a type="button"(click)="confirmAppointment()" class="btn btn-primary submit-btn" data-bs-dismiss="modal"  aria-label="Close">Save Changes</a>
+			  <a type="button"(click)="confirmAppointment()" class="btn btn-primary submit-btn" data-bs-dismiss="modal"  aria-label="Close">Enregistrer Modification</a>
 			</div>
 		  
 		</div>
