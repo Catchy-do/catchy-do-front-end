@@ -5,7 +5,7 @@
             <div [className]="mapGrid ? 'col-xl-6 col-lg-12 order-md-last order-sm-last order-last map-left' : 'col-xl-7 col-lg-12 order-md-last order-sm-last order-last map-left'">
                 <div class="row align-items-center mb-4">
                     <div class="col-md-6 col">
-                        <h4>2245 Doctors found</h4>
+                        <h4>50 Tuteurs Trouvés</h4>
                     </div>
 
                     <div class="col-md-6 col-auto">
@@ -16,11 +16,11 @@
                         <div class="sort-by d-sm-block d-none">
                             <span class="sortby-fliter">
                                 <ng-select2  width="100%">
-                                    <option>Select</option>
-                                        <option class="sorting">Rating</option>
-                                        <option class="sorting">Popular</option>
-                                        <option class="sorting">Latest</option>
-                                        <option class="sorting">Free</option>
+                                    <option>Sélectionner</option>
+                                        <option class="sorting">Classement</option>
+                                        <option class="sorting">Populaires</option>
+                                        <option class="sorting">Nouveaux</option>
+                                        <option class="sorting">Pro Bono</option>
                                 </ng-select2>
                             </span>
                         </div>
@@ -49,7 +49,7 @@
                                     <i class="fas fa-star filled"></i>
                                     <i class="fas fa-star filled"></i>
                                     <i class="fas fa-star filled"></i>
-                                    <span class="d-inline-block average-rating">(17)</span>
+                                    <span class="d-inline-block average-rating">(10)</span>
                                 </div>
                                 <ul class="available-info">
                                     <li>
@@ -64,10 +64,10 @@
                                 </ul>
                                 <div class="row row-sm">
                                     <div class="col-6">
-                                        <a [routerLink]="'/mentor-profile'" class="btn view-btn">View Profile</a>
+                                        <a [routerLink]="'/mentor-profile'" class="btn view-btn">Voir Profil</a>
                                     </div>
                                     <div class="col-6">
-                                        <a [routerLink]="'/book-now'" class="btn book-btn">Book Now</a>
+                                        <a [routerLink]="'/book-now'" class="btn book-btn"> Réservez</a>
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
 												<i class="fas fa-star filled"></i>
 												<i class="fas fa-star filled"></i>
 												<i class="fas fa-star"></i>
-												<span class="d-inline-block average-rating">(17)</span>
+												<span class="d-inline-block average-rating">(100)</span>
 											</div>
 											<div class="mentor-details">
 												<p class="user-location"><i class="fas fa-map-marker-alt"></i> {{mentor.location}}</p>
@@ -105,13 +105,13 @@
 									<div class="user-info-right">
 										<div class="user-infos">
 											<ul>
-												<li><i class="far fa-comment"></i> 17 Feedback</li>
+												<li><i class="far fa-comment"></i> 50 Feedback</li>
 												<li><i class="fas fa-map-marker-alt"></i> {{mentor.location}}</li>
 												<li><i class="far fa-money-bill-alt"></i> {{mentor.consulting_fees}} - {{mentor.Price}} <i class="fas fa-info-circle" tooltip="Lorem Ipsum" placement="top"></i> </li>
 											</ul>
 										</div>
 										<div class="mentor-booking">
-											<a class="apt-btn" [routerLink]="'/mentee/booking'">Book Appointment</a>
+											<a class="apt-btn" [routerLink]="'/mentee/booking'"> Réservez</a>
 										</div>
 									</div>
 								</div>
@@ -121,7 +121,7 @@
                 </div>
 
                 <div class="load-more text-center">
-                    <a class="btn btn-primary btn-sm" href="javascript:void(0);">Load More</a>
+                    <a class="btn btn-primary btn-sm" href="javascript:void(0);"> Voir Plus</a>
                 </div>
                 </div>
                 <!-- /content-left-->
