@@ -4,10 +4,10 @@
 		<div class="page-header">
 			<div class="row">
 				<div class="col-sm-12">
-					<h3 class="page-title">Bookings</h3>
+					<h3 class="page-title"> Réservation </h3>
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a [routerLink]="'/admin'">Dashboard</a></li>
-						<li class="breadcrumb-item active">Bookings</li>
+						<li class="breadcrumb-item"><a [routerLink]="'/admin'"> Tableau de Bord </a></li>
+						<li class="breadcrumb-item active"> Réservations </li>
 					</ul>
 				</div>
 			</div>
@@ -22,12 +22,12 @@
 							<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"  class="row-border hover table table-hover table-center mb-0">
 								<thead>
 									<tr>
-										<th>Mentor Name</th>
-										<th>Course</th>
-										<th>Mentee Name</th>
-										<th>Booking Time</th>
-										<th>Status</th>
-										<th class="text-end">Amount</th>
+										<th> Nom Tuteur </th>
+										<th>Cours</th>
+										<th>Nom Apprenant</th>
+										<th> Temps Réservation</th>
+										<th>Statut</th>
+										<th class="text-end">Montant</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -49,7 +49,7 @@
 										<td>
 											<div class="status-toggle">
 												<input type="checkbox" id="status_{{i + 1}}" class="check" checked>
-												<label for="status_{{i + 1}}" class="checktoggle">checkbox</label>
+												<label for="status_{{i + 1}}" class="checktoggle">case à cocher </label>
 											</div>
 										</td>
 										<td class="text-end">
