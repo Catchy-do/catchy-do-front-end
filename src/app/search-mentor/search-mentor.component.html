@@ -11,7 +11,7 @@
 				<!-- Search Filter -->
 				<div class="card search-filter">
 					<div class="card-header">
-						<h4 class="card-title mb-0">Search Filter</h4>
+						<h4 class="card-title mb-0">Filtre de Recherche</h4>
 					</div>
 					<div class="card-body">
 					<div class="filter-widget">
@@ -24,18 +24,18 @@
 						<div>
 							<label class="custom_check">
 								<input type="checkbox" name="gender_type" value="Male" (click)="checkType($event)"  [checked]="type === 'Male'" >
-								<span class="checkmark"></span> Male
+								<span class="checkmark"></span> Mâle
 							</label>
 						</div>
 						<div>
 							<label class="custom_check">
 								<input type="checkbox" name="gender_type" value="Female" [checked]="type === 'Female'"  (click)="checkType($event)">
-								<span class="checkmark"></span> Female
+								<span class="checkmark"></span> Femelle
 							</label>
 						</div>
 					</div>
 					<div class="filter-widget">
-						<h4>Select Courses</h4>
+						<h4>Sélectionner Cours</h4>
 						<div  *ngFor="let s of specialityList" >
 							<label class="custom_check">
 								<input type="checkbox"  (click)="checkSpeciality($event)" name="select_specialist" 
@@ -46,7 +46,7 @@
 						
 					</div>
 						<div class="btn-search">
-							<button type="button" class="btn w-100" (click)="search()">Search</button>
+							<button type="button" class="btn w-100" (click)="search()">Recherche</button>
 						</div>
 					</div>
 				</div>
@@ -94,7 +94,7 @@
 								</div>
 								
 								<div class="mentor-booking">
-									<a class="apt-btn" (click)="openConfirmationPopup(mentor)">Book Appointment</a>
+									<a class="apt-btn" (click)="openConfirmationPopup(mentor)"> Réservez Tuteur/Tutrice</a>
 									
 								</div>
 
@@ -102,15 +102,15 @@
 								  <div class="modal-dialog modal-dialog-centered">
 									<div class="modal-content">
 									  <div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLabel">Confirm Appointement</h5>
+										<h5 class="modal-title" id="exampleModalLabel">Confirmer Réservation</h5>
 										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="cancelAppointment()"></button>
 									  </div>
 									  <div class="modal-body">
-										voulez vous confirmez le rendez-vous ?
+										voulez vous confirmez la Réservation ?
 									  </div>
 									  <div class="modal-footer">
-										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cancelAppointment()">Close</button>
-										<button type="button" class="btn btn-primary" (click)="confirmAppointment()">Save changes</button>
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cancelAppointment()">Fermer</button>
+										<button type="button" class="btn btn-primary" (click)="confirmAppointment()">Enregistrer Modification</button>
 									  </div>
 									</div>
 								  </div>
@@ -126,7 +126,7 @@
 				</div>
 
 				<div class="load-more text-center" *ngIf="mentors.length !== 0 && load !== false" >
-					<a class="btn btn-primary btn-sm" href="javascript:void(0);" (click)="loadMore()">Load More</a>
+					<a class="btn btn-primary btn-sm" href="javascript:void(0);" (click)="loadMore()">Voir Plus</a>
 				</div>
 			</div>
 		</div>
