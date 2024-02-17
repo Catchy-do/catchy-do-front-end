@@ -22,7 +22,7 @@
 				</div>
 			</div>
 			<div class="dash-widget-info">
-				<h3>33</h3>
+				<h3> 0 </h3>
 				<h6>Points</h6>
 			</div>
 		</div>
@@ -36,8 +36,8 @@
 				</div>
 			</div>
 			<div class="dash-widget-info">
-				<h3>14</h3>
-				<h6>Rank</h6>
+				<h3>1</h3>
+				<h6>Classement</h6>
 			</div>
 		</div>
 	</div>
@@ -45,7 +45,7 @@
 
 <div class="row">
 	<div class="col-md-12">
-		<h4 class="mb-4">Mentor Lists</h4>
+		<h4 class="mb-4"> Liste Apprenant(e)s</h4>
 
 		<div class="card card-table">
 			<div class="card-body">
@@ -53,10 +53,10 @@
 					<table class="table table-hover table-center mb-0">
 						<thead>
 							<tr>
-								<th>Basic Info</th>
-								<th>Created Date</th>
-								<th class="text-center">Tags</th>
-								<th class="text-center">Action</th>
+								<th> Infos de Base</th>
+								<th> Date Créée</th>
+								<th class="text-center">Demandes</th>
+								<th class="text-center">Réponses</th>
 							</tr>
 						</thead> 
 						<tbody>
@@ -71,7 +71,7 @@
 								<td class="text-center">
 									<span [ngClass]="{'accept': mentee.status === 'accepted', 'pending': mentee.status === 'pending', 'reject': mentee.status === 'rejected' }">{{mentee.status}}</span>
 								</td>
-								<td class="text-center"><a [routerLink]="'/mentor-profile'" class="btn btn-sm bg-info-light"><i class="far fa-eye"></i> View</a></td>
+								<td class="text-center"><a [routerLink]="'/mentor-profile'" class="btn btn-sm bg-info-light"><i class="far fa-eye"></i> Voir</a></td>
 							</tr>
 						</tbody>
 					</table>
