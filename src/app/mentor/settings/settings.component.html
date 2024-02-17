@@ -1,7 +1,7 @@
 <!-- Page Content -->            
 <div class="col-md-12">
     <div *ngIf="!userInfo.isConfirmed"class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>Warning!</strong> Your a count is not yet verified.
+        <strong>Attention!</strong> Votre Compte n'est pas encore Validé.
        
     </div>
     <div class="card">
@@ -19,18 +19,18 @@
                                 </div>
                                 <div class="upload-img" *ngIf="!confimeChange">
                                     <div class="change-photo-btn">
-                                        <span><i class="fa fa-upload"></i> Upload Photo</span>
+                                        <span><i class="fa fa-upload"></i> Télécharger Photo</span>
                                         <input type="file" class="upload" (change)="onChange($event)">
                                     </div>
                                     
                                 </div>
                                 <div class="form-group" *ngIf="confimeChange"  (click)="upload()">
                                     <div class="change-photo-btn floated" style=" background-color:darkgreen;">
-                                        <span><i class="fa fa-check" ></i> Confirme</span>
+                                        <span><i class="fa fa-check" ></i> Confirmer</span>
                                          
                                     </div>
                                     <div  class="change-photo-btn floated" style=" background-color: chocolate;" (click)="cancel()">
-                                        <span><i class="fa fa-cancel " ></i> Cancel</span>
+                                        <span><i class="fa fa-cancel " ></i> Annuler</span>
                                          
                                     </div>
                                 </div>
@@ -39,7 +39,7 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
-                            <label>First Name</label>
+                            <label> Prénom</label>
                             <input type="text" class="form-control"  [(ngModel)]="userInfo.firstName"
                             formControlName="firstName" >
                             
@@ -47,7 +47,7 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
-                            <label>Last Name</label>
+                            <label> Nom </label>
                             <input type="text" class="form-control"  [(ngModel)]="userInfo.lastName" 
                             formControlName="lastName">
                             
@@ -55,7 +55,7 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
-                            <label>Date of Birth</label>
+                            <label>Date de Naissance</label>
                             <div class="cal-icon">
                                 <input type="text" class="form-control datetimepicker" [(ngModel)]="userInfo.dateOfBirth"
                                 formControlName="dateOfBirth">
@@ -64,19 +64,19 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
-                            <label>Email ID</label>
+                            <label>Email </label>
                             <input type="email" class="form-control" [(ngModel)]="userInfo.email" formControlName="email">
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
-                            <label>Mobile</label>
+                            <label>Tel</label>
                             <input type="text" [(ngModel)]="userInfo.phoneNumber" class="form-control" formControlName="phoneNumber">
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="form-group">
-                        <label>Address</label>
+                        <label>Adresse</label>
                             <input type="text" class="form-control" [(ngModel)]="userInfo.adresse" formControlName="adresse">
                         </div>
                     </div>
@@ -97,7 +97,7 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
-                            <label>Region</label>
+                            <label>Région</label>
                             <!-- <input type="text" class="form-control" [(ngModel)]="userInfo.region" formControlName="region"> -->
                             <div class="col-lg-9">
                                 <select [ngModel]="regions" class="form-control"
@@ -114,13 +114,13 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
-                            <label>Zip Code</label>
+                            <label> Code Postal</label>
                             <input type="text" class="form-control" [(ngModel)]="userInfo.zipCode" formControlName="zipCode">
                         </div>
                     </div>
                     <div class="col-12 col-md-6">
                         <div class="form-group">
-                            <label>Country</label>
+                            <label>Pays</label>
                             <!-- <input type="text" class="form-control" [(ngModel)]="userInfo.countryName" formControlName="pays"> -->
                             <div class="col-lg-9">
                                 <select [(ngModel)]="selectedCountry" class="form-control"
@@ -151,7 +151,7 @@
                         </select>
                     </div> -->
                     <div class="col-12 col-md-6">
-                        <label>Competences</label>
+                        <label>Compétences</label>
                         <ng-select [(ngModel)]="selectedCompetence" class="form-select"
                         formControlName="competences" [multiple]="true" >
                             <ng-option [value]="c" *ngFor="let c of competencesList" >{{c.intitule}}</ng-option>
@@ -194,7 +194,7 @@
 
 
                 <div class="submit-section">
-                    <button type="button" (click)="save()" class="btn btn-primary submit-btn">Save Changes</button>
+                    <button type="button" (click)="save()" class="btn btn-primary submit-btn">Enregistrer Modification</button>
                 </div>
             </form>
             <!-- /Profile Settings Form -->
