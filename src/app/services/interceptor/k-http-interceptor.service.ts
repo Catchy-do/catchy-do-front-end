@@ -28,10 +28,10 @@ export class KHttpInterceptorService implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // For Non POST AUTH + OPTIONS HTTP
 
-    if (!request.url.endsWith('/oauth/login') && !request.url.includes('public') ) {
+    if (!request.url.endsWith('/oauth/login') && !request.url.includes('public')) {
       request = this.addHeaderInformation(request);
     }
-   
+
     // For ALL REQUEST
 
     return next.handle(request).pipe(
@@ -53,7 +53,7 @@ export class KHttpInterceptorService implements HttpInterceptor {
       request = request.clone({
         setHeaders: {
           'Authorization': 'Bearer ' + this.token_string,
-
+          'Access-Control-Allow-Origin': '*',
         }
       });
 
@@ -84,7 +84,7 @@ export class KHttpInterceptorService implements HttpInterceptor {
     request = request.clone({
       setHeaders: {
         'Access-Control-Allow-Origin': '*',
-       
+
       }
     });
 

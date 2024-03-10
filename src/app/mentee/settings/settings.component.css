@@ -11,5 +11,16 @@
 }
 .floated {
     float:left;
-    margin-right:5px;
+    margin-right:2px;
   }
+  ::ng-deep.ng-dropdown-panel .scroll-host {
+    overflow: hidden;
+    overflow-y: auto;
+    position: relative;
+    display: block;
+    text-align: center;
+    background-color:#ebeef0;
+    -webkit-overflow-scrolling: touch;
+    position: unset;
+ 
+}

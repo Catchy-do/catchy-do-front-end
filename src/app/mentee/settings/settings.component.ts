@@ -1,8 +1,9 @@
 import { HttpEvent, HttpEventType } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormControl, FormGroup, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatLegacyDialog as MatDialog, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
 import { error } from 'console';
+import { ToastrService } from 'ngx-toastr';
 import { UserInfo } from 'src/app/admin/model/userInfo';
 import { MenteeServicesService } from 'src/app/services/mentee/mentee-services.service';
 import { PaysResp } from 'src/app/services/model/paysResp';
@@ -33,8 +34,13 @@ export class SettingsComponent implements OnInit {
   pays!: PaysResp[];
   result!: Resps;
   indexSelection: any;
-  selectedCountry!: PaysResp;
+  selectedCountry: PaysResp = new PaysResp();
+  selectedVille: VilleResp = new VilleResp();
+  selectedRegion: RegionResp = new RegionResp();
   defaultVille !: string;
+  model: any;
+  startDate: any;
+  endDate: any;
 
 
 
@@ -45,35 +51,37 @@ export class SettingsComponent implements OnInit {
     public dataStore: DataStorageService,
     public pubServices: PublicServicesService,
     public fb: UntypedFormBuilder,
-    private menteeService: MenteeServicesService) {
-    this.settingsForm = new UntypedFormGroup({
-      firstName: new UntypedFormControl(''),
-      lastName: new UntypedFormControl('', [Validators.required]),
-      email: new UntypedFormControl('', Validators.compose([Validators.required])),
-      dateOfBirth: new UntypedFormControl('', Validators.compose([Validators.required])),
-      adresse: new UntypedFormControl(''),
-      phoneNumber: new UntypedFormControl('', Validators.compose([Validators.required, Validators.pattern(("[1-2-3-4-5-6-7-8-9]\\d{7}"))])),
-      villeID: new UntypedFormControl('', Validators.compose([Validators.required])),
-      region: new UntypedFormControl('', Validators.compose([Validators.required])),
-      zipCode: new UntypedFormControl('', Validators.compose([Validators.required])),
-      pays: new UntypedFormControl('', Validators.compose([Validators.required])),
+    private menteeService: MenteeServicesService, private toastr: ToastrService) {
+
+    this.userInfo = this.dataStore.getUserInfo();
+
+    this.settingsForm = new FormGroup({
+      firstName: new FormControl(''),
+      lastName: new FormControl('', [Validators.required]),
+      email: new FormControl('', Validators.compose([Validators.required])),
+      dateOfBirth: new FormControl('', Validators.compose([Validators.required])),
+      adresse: new FormControl(''),
+      phoneNumber: new FormControl('', Validators.compose([Validators.required, Validators.pattern(("[1-2-3-4-5-6-7-8-9]\\d{7}"))])),
+      villeID: new FormControl('', Validators.compose([Validators.required])),
+      region: new FormControl('', Validators.compose([Validators.required])),
+      zipCode: new FormControl('', Validators.compose([Validators.required])),
+      pays: new FormControl('', Validators.compose([Validators.required])),
 
     });
 
-    this.userInfo = this.dataStore.getUserInfo();
+
   }
 
   ngOnInit(): void {
+
+    this.selectedCountry.id = this.userInfo.paysID.toString();
+    this.selectedVille.id = this.userInfo.villeID.toString();
+    this.selectedRegion.id = this.userInfo.regionID.toString();
     console.log(this.userInfo)
     this.getAllPays();
     this.getuserImage();
-    this.menteeService.getUserProfile( this.userInfo.userId).subscribe(
-      (result) => {
-        let res = result as UserInfo;
-      },
-      (error) => {
-        console.log('Error occurred:', error);
-      })
+    this.getAllPaysRegion(this.userInfo.paysID);
+    this.getAllRVille(this.userInfo.regionID);
   }
 
 
@@ -126,19 +134,16 @@ export class SettingsComponent implements OnInit {
   }
 
   cancel() {
-    console.log("cancel")
     this.confimeChange = false;
     this.file = null;
     this.getuserImage();
   }
   save() {
     window.scroll(0, 0);
-    this.userInfo = this.dataStore.getUserInfo();
 
     this.dataStore.removeFromStorage('userInfo');
     this.userInfo.firstName = this.settingsForm.get('firstName')?.value;
     this.userInfo.lastName = this.settingsForm.get('lastName')?.value;
-    this.userInfo.dateOfBirth = this.settingsForm.get('dateOfBirth')?.value;
     this.userInfo.email = this.settingsForm.get('email')?.value;
     this.userInfo.phoneNumber = this.settingsForm.get('phoneNumber')?.value;
     this.userInfo.adresse = this.settingsForm.get('adresse')?.value;
@@ -147,10 +152,10 @@ export class SettingsComponent implements OnInit {
 
     this.menteeService.updateUserProfile(this.userInfo).subscribe(
       (result) => {
-        console.log("user updated with success");
-        console.log(result);
+        this.toastr.success('user updated with success');
       }, (error) => {
         console.log('Error occurred:', error);
+
       });
     this.dataStore.setUserInfo(this.userInfo)
 
@@ -167,10 +172,8 @@ export class SettingsComponent implements OnInit {
   }
 
   getAllPaysRegion(c: any) {
-    console.log(this.selectedCountry)
-    this.indexSelection = this.getCountrySelectedIndex(this.selectedCountry.id);
-    let p = this.pays.find(x => x.id === this.selectedCountry.id);
-    this.pubServices.getAllRegionByCountry(Number(p!.id)).subscribe(
+
+    this.pubServices.getAllRegionByCountry(c).subscribe(
       (result) => {
         this.result = result as Resps;
         this.regions = this.result.data as RegionResp[];
@@ -179,6 +182,7 @@ export class SettingsComponent implements OnInit {
       });
   }
   getCountrySelectedIndex(val: string) {
+
     return this.pays.findIndex(x => x.id === val);
   }
   getAllRVille(id: any) {
@@ -186,8 +190,14 @@ export class SettingsComponent implements OnInit {
       (result) => {
         this.result = result as Resps;
         this.villes = this.result.data.children as VilleResp[];
+        console.log(this.villes)
       }, (error) => {
         console.log('Error occurred:', error);
       });
   }
+  setDate(evt: any) {
+    this.userInfo.dateOfBirth = evt.yeat + "/" + evt.month + "/" + evt.date;
+
+  }
+
 }

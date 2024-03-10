@@ -1,158 +1,137 @@
 <div class="card">
-	<div class="card-body">		
+	<div class="card-body">
 		<!-- Profile Settings Form -->
 		<form>
-			
-				<div class="col-12 col-md-12">
-					<div class="form-group">
+
+			<div class="col-12 col-md-12">
+				<div class="form-group">
 
 
-						<div class="change-avatar">
-							<div class="profile-img">
-								<img *ngIf="userImage==null"src="assets/img/user/avatar-user-male.png" alt="User Image">
-								<img *ngIf="userImage!=null"src="{{userImage}}" alt="User Image">
-							</div>
-							<div class="upload-img" *ngIf="!confimeChange">
-								<div class="change-photo-btn">
-									<span><i class="fa fa-upload"></i> Télécharger Photo</span>
-									<input type="file" class="upload" (change)="onChange($event)">
-								</div>
-								
-							</div>
-							<div class="form-group" *ngIf="confimeChange"  (click)="upload()">
-								<div class="change-photo-btn floated" style=" background-color:darkgreen;">
-									<span><i class="fa fa-check" ></i> Confirmer</span>
-									 
-								</div>
-								<div  class="change-photo-btn floated" style=" background-color: chocolate;" (click)="cancel()">
-									<span><i class="fa fa-cancel " ></i> Annuler</span>
-									 
-								</div>
-							</div>
-							
+					<div class="change-avatar">
+						<div class="profile-img">
+							<img *ngIf="userImage==null" src="assets/img/user/avatar-user-male.png" alt="User Image">
+							<img *ngIf="userImage!=null" src="{{userImage}}" alt="User Image">
 						</div>
+						<div class="upload-img" *ngIf="!confimeChange">
+							<div class="change-photo-btn">
+								<span><i class="fa fa-upload"></i> Télécharger Photo</span>
+								<input type="file" class="upload" (change)="onChange($event)">
+							</div>
+
+						</div>
+						<div class="form-group" *ngIf="confimeChange" (click)="upload()">
+							<div class="change-photo-btn floated" style=" background-color:darkgreen;">
+								<span><i class="fa fa-check"></i> Confirmer</span>
+
+							</div>
+							<div class="change-photo-btn floated" style=" background-color: chocolate;"
+								(click)="cancel()">
+								<span><i class="fa fa-cancel "></i> Annuler</span>
+
+							</div>
+						</div>
+
 					</div>
-
-
 				</div>
-				<div class="row form-row" [formGroup]="settingsForm">
+
+
+			</div>
+			<div class="row form-row" [formGroup]="settingsForm">
 				<div class="col-12 col-md-6">
 					<div class="form-group">
 						<label>Prénom</label>
-						<input type="text" class="form-control" formControlName="firstName" 
-						[(ngModel)]="userInfo.firstName" >
+						<input type="text" class="form-control" formControlName="firstName"
+							[(ngModel)]="userInfo.firstName">
 					</div>
 				</div>
 				<div class="col-12 col-md-6">
 					<div class="form-group">
 						<label> Nom</label>
-						<input type="text" class="form-control" formControlName="lastName" 
-						[(ngModel)]="userInfo.lastName">
+						<input type="text" class="form-control" formControlName="lastName"
+							[(ngModel)]="userInfo.lastName">
 					</div>
 				</div>
 				<div class="col-12 col-md-6">
 					<div class="form-group">
 						<label>Date de Naissance</label>
-						<div class="cal-icon">
-							<input type="text" class="form-control datetimepicker" formControlName="dateOfBirth" 
-							[(ngModel)]="userInfo.dateOfBirth" >
-							
+						<div class="input-group">
+							<input class="form-control" (ngModelChange)="setDate($event)"
+								[(ngModel)]="userInfo.dateOfBirth" [ngModelOptions]="{standalone: true}" type="date">
+
 						</div>
 					</div>
 				</div>
 				<div class="col-12 col-md-6">
 					<div class="form-group">
 						<label>Email</label>
-						<input type="email" class="form-control" formControlName="email"
-						[(ngModel)]="userInfo.email">
+						<input type="email" class="form-control" formControlName="email" [(ngModel)]="userInfo.email">
 					</div>
 				</div>
 				<div class="col-12 col-md-6">
 					<div class="form-group">
 						<label>Tél</label>
 						<input type="text" formControlName="phoneNumber" class="form-control"
-						[(ngModel)]="userInfo.phoneNumber">
+							[(ngModel)]="userInfo.phoneNumber">
 					</div>
 				</div>
 				<div class="col-12">
 					<div class="form-group">
-					<label>Adresse</label>
+						<label>Adresse</label>
 						<input type="text" class="form-control" formControlName="adresse"
-						[(ngModel)]="userInfo.adresse">
+							[(ngModel)]="userInfo.adresse">
 					</div>
 				</div>
 				<div class="col-12 col-md-6">
 					<div class="form-group">
 						<label>Ville</label>
-						<!-- <input type="text" class="form-control" formControlName="ville"
-						[(ngModel)]="userInfo.ville"> -->
 						<div class="col-lg-9">
-							<select class="form-control" [(ngModel)]="userInfo.villeID" name="villeID"
-								formControlName="villeID" required 
-								[ngClass]=" ! settingsForm.controls['villeID'].valid ? 'form-control is-invalid' : 'form-control is-valid' ">
-								<option [ngValue]="ville.id"  *ngFor="let ville of villes">
-									{{ville.text}}
-								</option>
-							</select>
+
+							<ng-select class="form-control" [items]="villes" bindLabel="text" bindValue="id"
+								formControlName="villeID" [(ngModel)]="selectedVille.id">
+							</ng-select>
 						</div>
 					</div>
 				</div>
 				<div class="col-12 col-md-6">
 					<div class="form-group">
 						<label>Région</label>
-						<!-- <input type="text" class="form-control" formControlName="region"
-						[(ngModel)]="userInfo.region"> -->
 						<div class="col-lg-9">
-							<select [ngModel]="regions" class="form-control"
-								(ngModelChange)="getAllRVille($event)" name="sel3"
-								 data-select2-id="1" tabindex="-4" [ngModelOptions]="{standalone: true}"
-								aria-hidden="true" >
-
-								<option [ngValue]="reg.id" *ngFor="let reg of regions" value="{{reg.id}}">
-									{{reg.text}}</option>
-
-							</select>
+							<ng-select class="form-control" [items]="regions" bindLabel="text" bindValue="id"
+								[(ngModel)]="selectedRegion.id" formControlName="region"
+								(ngModelChange)="getAllRVille($event)">
+							</ng-select>
 						</div>
+
 					</div>
 				</div>
-				<div class="col-12 col-md-6">
+				<div class=" col-12 col-md-6">
 					<div class="form-group">
 						<label> Code Postal</label>
 						<input type="text" class="form-control" formControlName="zipCode"
-						[(ngModel)]="userInfo.zipCode">
+							[(ngModel)]="userInfo.zipCode">
 					</div>
 				</div>
 				<div class="col-12 col-md-6">
 					<div class="form-group">
 						<label>Pays</label>
-						<!-- <input type="text" class="form-control" formControlName="pays"
-						[(ngModel)]="userInfo.countryName" placeholder="{{userInfo.countryName}}">  -->
-						
-						<!-- <div class="col-lg-9">
-							
-							<select [(ngModel)]="selectedCountry" class="form-control"
-								(change)="getAllPaysRegion($event)" name="sel2"
-								[ngModelOptions]="{standalone: true}" >
-								<option [ngValue]="p" *ngFor="let p of pays">{{p.text}}</option>
-							</select>
 
-						</div> -->
 
 						<div class="col-lg-9">
-							<ng-select [(ngModel)]="selectedCountry" class="form-control" (change)="getAllPaysRegion($event)" placeholder="{{userInfo.countryName}}">
-								<!-- <ng-option [value]="''" disabled>{{userInfo.countryName}}</ng-option> -->
-							  <ng-option [value]="p.id" *ngFor="let p of pays">{{ p.text }}</ng-option>
+							<ng-select class="form-control" [items]="pays" bindLabel="text" bindValue="id"
+								(change)="getAllPaysRegion($event.id)" [(ngModel)]="selectedCountry.id"
+								formControlName="pays">
 							</ng-select>
 						</div>
-						  
+
 					</div>
 				</div>
-				
+
 			</div>
 			<div class="submit-section">
 				<button type="button" (click)="save()" class="btn btn-primary submit-btn">Enregistrer</button>
 			</div>
 		</form>
-		<!-- /Profile Settings Form -->		
+
+		<!-- /Profile Settings Form -->
 	</div>
 </div>

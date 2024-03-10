@@ -2,7 +2,7 @@
 <div class="header-top" *ngIf="userInfo != null">
   <div class="container-fluid">
     <div class="row">
-     <div class="col-md-8">
+      <div class="col-md-8">
         <div class="left-top" *ngIf="userInfo">
           <ul>
             <li><i class="fas fa-map-marker-alt top-icon"></i>{{userInfo.adresse}}</li>
@@ -21,7 +21,8 @@
               <a href="https://www.instagram.com/stemadot/"><i class="fab fa-instagram top-icons"></i></a>
             </li>
             <li>
-              <a href="https://www.linkedin.com/company/stema-do/?viewAsMember=true"><i class="fab fa-linkedin-in top-icons"></i></a>
+              <a href="https://www.linkedin.com/company/stema-do/?viewAsMember=true"><i
+                  class="fab fa-linkedin-in top-icons"></i></a>
             </li>
             <li>
               <a href="#"><i class="fab fa-twitter top-icons"></i></a>
@@ -33,169 +34,171 @@
   </div>
 </div>
 <!-- /Header Top-->
-			<!-- Header -->
-			<header class="header">
-				<nav class="navbar navbar-expand-lg header-nav">
-					<div class="container-fluid">
-						<div class="navbar-header">
-							<a id="mobile_btn" href="javascript:void(0);">
-							<span class="bar-icon">
-							<span></span>
-							<span></span>
-							<span></span>
-							</span>
-							</a>
-							<a [routerLink]="'/index'" class="navbar-brand logo">
-							<img src="assets/img/logo.png" class="img-fluid" alt="Logo">
-							</a>
-						</div>
-						<div class="main-menu-wrapper">
-							<div class="menu-header">
-								<a [routerLink]="'/index'" class="menu-logo">
-								<img src="assets/img/logo.png" class="img-fluid" alt="Logo">
-								</a>
-								<a id="menu_close" class="menu-close" href="javascript:void(0);">
-								<i class="fas fa-times"></i>
-								</a>
-							</div>
+<!-- Header -->
+<header class="header">
+  <nav class="navbar navbar-expand-lg header-nav">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a id="mobile_btn" href="javascript:void(0);">
+          <span class="bar-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </a>
+        <a [routerLink]="'/index'" class="navbar-brand logo">
+          <img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+        </a>
+      </div>
+      <div class="main-menu-wrapper">
+        <div class="menu-header">
+          <a [routerLink]="'/index'" class="menu-logo">
+            <img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+          </a>
+          <a id="menu_close" class="menu-close" href="javascript:void(0);">
+            <i class="fas fa-times"></i>
+          </a>
+        </div>
 
-              <div *ngIf="userInfo == null" >
-                <!-- <ul class="main-nav" >
+        <div *ngIf="userInfo == null">
+          <!-- <ul class="main-nav" >
                   
                 </ul> -->
-              </div>
-              
-              
-              <div *ngIf="userInfo != null && isMentor " >
-                <ul class="main-nav" >
-                  <li [class.active]="base === '/'">
-                    <a (click)="navigate('Home')" [routerLink]="'/'" >Accueil</a>
-                  </li>
-                  <li [class.active]="base === 'mentor' && page === 'dashboard'">
-                    <a [ngClass]="{ 'disabled': !isConfirmed }"  [routerLink]="'/mentor/dashboard'">Tableau de bord</a>
-                  </li>
-                  <li [class.active]="base === 'mentor' && page === 'my-bookings'">
-                    <a [ngClass]="{ 'disabled': !isConfirmed }" [routerLink]="'/mentor/my-bookings'">Réservations</a>
-                  </li>
-                  <li [class.active]="base === 'mentor' && page === 'mentees'">
-                    <a [ngClass]="{ 'disabled': !isConfirmed }" [routerLink]="'/mentor/mentees'"> Liste des Apprenants </a>
-                  </li>
-                  <li [class.active]="base === 'mentor' && page === 'schedule-timing'">
-                    <a [ngClass]="{ 'disabled': !isConfirmed }" [routerLink]="'/mentor/schedule-timing'">Calendrier</a>
-                  </li>
-                  <li [class.active]="base === 'mentor'" routerLinkActive="active" class="has-submenu" [ngClass]="{ 'disabled': !isConfirmed }">
-                    <a >Autres <i class="fas fa-chevron-down"></i></a>
-                    <ul class="submenu" id="mentor">
-                      <li><a [routerLink]="'/mentor/settings'">Paramètres du Profil</a></li>
-                      <li><a [routerLink]="'/message'">Discuter</a></li>
-                      <li><a [routerLink]="'/mentor/invoice'">Factures</a></li>
-                      <li><a [routerLink]="'/mentor/reviews'">Avis</a></li>
-                      <li class="has-submenu"> 
-                        <a href="javascript:void(0)">Blog</a>
-                        <ul class="submenu">
-                          <li><a [routerLink]="'/mentor/blog'">Blog</a></li>
-                          <li><a [routerLink]="'/blog'">Voir Blog</a></li>
-                          <li><a [routerLink]="'/mentor/add-blog'">Ajouter Blog</a></li>
-                          <li><a [routerLink]="'/mentor/edit-blog'">Modifier Blog</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
+        </div>
 
-                  <li [class.active]="base === 'mentor'" class="has-submenu" [ngClass]="{ 'disabled': !isConfirmed }">
-                    <!-- 'voice-call' || base === 'video-call' || base === 'search-mentor' || base === 'component' || base === 'login' || base === 'register' || base === 'forgot-password' || base === 'blank' || base === 'invoice-details'" class="has-submenu"> -->
-                    <a [ngClass]="{ 'disabled': !isConfirmed }">Pages <i class="fas fa-chevron-down"></i></a>
-                    <ul class="submenu" id="pages">
-                      <li><a [routerLink]="'/voice-call'">Appel Vocal</a></li>
-                      <li><a [routerLink]="'/video-call'">Appel Video</a></li>
-                      <li><a [routerLink]="'/search-mentor'">Recherche Tuteurs</a></li>
-                      <li><a [routerLink]="'/component'">Composants</a></li>
-                      <li class="has-submenu">
-                        <a href="javascript:void(0)">Factures</a>
-                        <ul class="submenu">
-                          <li><a [routerLink]="'/mentor/invoice'">Factures</a></li>
-                          <li><a [routerLink]="'/invoice-details'">Affichage de la facture</a></li>
-                        </ul>
-                      </li>
-                      <li><a [routerLink]="'/blank'">Accueil</a></li>
-                
-                      <li><a [routerLink]="'/register'">S'inscrire</a></li>
-                      <li><a [routerLink]="'/login-page'">Se connecter</a></li>
-                      <li><a [routerLink]="'/forgot-password'">Mot de passe oublié</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
 
-              <div *ngIf="userInfo != null && isMentee">
-                <ul class="main-nav" >
-                  <li [class.active]="base === '/'">
-                    <a (click)="navigate('Home')" [routerLink]="'/'" >Accueil</a>
-                  </li>
-                  <li>
-                    <a [routerLink]="'/mentee/dashboard'">Tableau de bord</a>
-                  </li>
-                  <li>
-                    <a [routerLink]="'mentee/booking'">Réservations</a>
-                  </li>
-                  <li>
-                    <a [routerLink]="'/search-mentor'">Recherche Tuteur</a>
-                  </li>
-                  <li>
-                    <a [routerLink]="'/mentee/favourites'">Favoris</a>
-                  </li>
-                  <li [class.active]="base === 'mentee'" routerLinkActive="active" class="has-submenu">
-                    <a>Autres <i class="fas fa-chevron-down"></i></a>
-                    <ul class="submenu" id="mentee">
-                      <li><a [routerLink]="'/mentee/settings'">Paramètres de Profil</a></li>
-                      <li><a [routerLink]="'/message'">Discussions</a></li>
-                      <li><a [routerLink]="'/mentee/invoice'">Factures</a></li>
-                      <li><a [routerLink]="'/mentee/reviews'">Commentaires</a></li>
-                      <li class="has-submenu"> 
-                        <a href="javascript:void(0)">Blog</a>
-                        <ul class="submenu">
-                          <li><a [routerLink]="'/mentee/blog'">Blog</a></li>
-                          <li><a [routerLink]="'/blog'"> Voir Blog</a></li>
-                          <li><a [routerLink]="'/mentee/add-blog'">Ajouter Blog</a></li>
-                          <li><a [routerLink]="'/mentee/edit-blog'">Modifier Blog</a></li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                  <li [class.active]="base === 'mentee'" class="has-submenu">
-                    <!-- 'voice-call' || base === 'video-call' || base === 'search-mentor' || base === 'component' || base === 'login' || base === 'register' || base === 'forgot-password' || base === 'blank' || base === 'invoice-details'" class="has-submenu"> -->
-                    <a>Pages <i class="fas fa-chevron-down"></i></a>
-                    <ul class="submenu" id="pages">
-                      <li><a [routerLink]="'/voice-call'">Appel Vocal</a></li>
-                      <li><a [routerLink]="'/video-call'">Appel Video</a></li>
-                      <li><a [routerLink]="'/search-mentor'">Recherche Tuteur</a></li>
-                      <li><a [routerLink]="'/component'">Composants</a></li>
-                      <li class="has-submenu">
-                        <a href="javascript:void(0)">Factures</a>
-                        <ul class="submenu">
-                          <li><a [routerLink]="'/mentor/invoice'">Factures</a></li>
-                          <li><a [routerLink]="'/invoice-details'">Affichage de la facture</a></li>
-                        </ul>
-                      </li>
-                      <li><a [routerLink]="'/blank'">Accueil</a></li>
-                
-                      <li><a [routerLink]="'/register'">S'inscrire</a></li>
-                      <li><a [routerLink]="'/login-page'">Se Connecter</a></li>
-                      <li><a [routerLink]="'/forgot-password'">Mot de passe oublié</a></li>
-                    </ul>
-                  </li>
-                
-                
-                
-                
-                
-                
-                
-                </ul>
-              </div>
-              
-              
-              <!-- <ng-container *ngIf="userInfo != null">
+        <div *ngIf="userInfo != null && isMentor ">
+          <ul class="main-nav">
+            <li [class.active]="base === '/'">
+              <a (click)="navigate('Home')" [routerLink]="'/'">Accueil</a>
+            </li>
+            <li [class.active]="base === 'mentor' && page === 'dashboard'">
+              <a [ngClass]="{ 'disabled': !isConfirmed }" [routerLink]="'/mentor/dashboard'">Tableau de bord</a>
+            </li>
+            <li [class.active]="base === 'mentor' && page === 'my-bookings'">
+              <a [ngClass]="{ 'disabled': !isConfirmed }" [routerLink]="'/mentor/my-bookings'">Réservations</a>
+            </li>
+            <li [class.active]="base === 'mentor' && page === 'mentees'">
+              <a [ngClass]="{ 'disabled': !isConfirmed }" [routerLink]="'/mentor/mentees'"> Liste des Apprenants </a>
+            </li>
+            <li [class.active]="base === 'mentor' && page === 'schedule-timing'">
+              <a [ngClass]="{ 'disabled': !isConfirmed }" [routerLink]="'/mentor/schedule-timing'">Calendrier</a>
+            </li>
+            <li [class.active]="base === 'mentor'" routerLinkActive="active" class="has-submenu"
+              [ngClass]="{ 'disabled': !isConfirmed }">
+              <a>Autres <i class="fas fa-chevron-down"></i></a>
+              <ul class="submenu" id="mentor">
+                <li><a [routerLink]="'/mentor/settings'">Paramètres du Profil</a></li>
+                <li><a [routerLink]="'/message'">Discuter</a></li>
+                <li><a [routerLink]="'/mentor/invoice'">Factures</a></li>
+                <li><a [routerLink]="'/mentor/reviews'">Avis</a></li>
+                <li class="has-submenu">
+                  <a href="javascript:void(0)">Blog</a>
+                  <ul class="submenu">
+                    <li><a [routerLink]="'/mentor/blog'">Blog</a></li>
+                    <li><a [routerLink]="'/blog'">Voir Blog</a></li>
+                    <li><a [routerLink]="'/mentor/add-blog'">Ajouter Blog</a></li>
+                    <li><a [routerLink]="'/mentor/edit-blog'">Modifier Blog</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
+            <li [class.active]="base === 'mentor'" class="has-submenu" [ngClass]="{ 'disabled': !isConfirmed }">
+              <!-- 'voice-call' || base === 'video-call' || base === 'search-mentor' || base === 'component' || base === 'login' || base === 'register' || base === 'forgot-password' || base === 'blank' || base === 'invoice-details'" class="has-submenu"> -->
+              <a [ngClass]="{ 'disabled': !isConfirmed }">Pages <i class="fas fa-chevron-down"></i></a>
+              <ul class="submenu" id="pages">
+                <li><a [routerLink]="'/voice-call'">Appel Vocal</a></li>
+                <li><a [routerLink]="'/video-call'">Appel Video</a></li>
+                <li><a [routerLink]="'/search-mentor'">Recherche Tuteurs</a></li>
+                <li><a [routerLink]="'/component'">Composants</a></li>
+                <li class="has-submenu">
+                  <a href="javascript:void(0)">Factures</a>
+                  <ul class="submenu">
+                    <li><a [routerLink]="'/mentor/invoice'">Factures</a></li>
+                    <li><a [routerLink]="'/invoice-details'">Affichage de la facture</a></li>
+                  </ul>
+                </li>
+                <li><a [routerLink]="'/blank'">Accueil</a></li>
+
+                <li><a [routerLink]="'/register'">S'inscrire</a></li>
+                <li><a [routerLink]="'/login-page'">Se connecter</a></li>
+                <li><a [routerLink]="'/forgot-password'">Mot de passe oublié</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div *ngIf="userInfo != null && isMentee">
+          <ul class="main-nav">
+            <li [class.active]="base === '/'">
+              <a (click)="navigate('Home')" [routerLink]="'/'">Accueil</a>
+            </li>
+            <li>
+              <a [routerLink]="'/mentee/dashboard'">Tableau de bord</a>
+            </li>
+            <li>
+              <a [routerLink]="'mentee/booking'">Réservations</a>
+            </li>
+            <li>
+              <a [routerLink]="'/search-mentor'">Recherche Tuteur</a>
+            </li>
+            <li *ngIf="userInfo != null && isAdmin">
+              <a [routerLink]="'/mentee/favourites'">Favoris</a>
+            </li>
+            <li *ngIf="userInfo != null && isAdmin" [class.active]="base === 'mentee'" routerLinkActive="active"
+              class="has-submenu">
+              <a>Autres <i class="fas fa-chevron-down"></i></a>
+              <ul class="submenu" id="mentee">
+                <li><a [routerLink]="'/mentee/settings'">Paramètres de Profil</a></li>
+                <li><a [routerLink]="'/message'">Discussions</a></li>
+                <li><a [routerLink]="'/mentee/invoice'">Factures</a></li>
+                <li><a [routerLink]="'/mentee/reviews'">Commentaires</a></li>
+                <li class="has-submenu">
+                  <a href="javascript:void(0)">Blog</a>
+                  <ul class="submenu">
+                    <li><a [routerLink]="'/mentee/blog'">Blog</a></li>
+                    <li><a [routerLink]="'/blog'"> Voir Blog</a></li>
+                    <li><a [routerLink]="'/mentee/add-blog'">Ajouter Blog</a></li>
+                    <li><a [routerLink]="'/mentee/edit-blog'">Modifier Blog</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li *ngIf="userInfo != null && isAdmin" [class.active]="base === 'mentee'" class="has-submenu">
+              <!-- 'voice-call' || base === 'video-call' || base === 'search-mentor' || base === 'component' || base === 'login' || base === 'register' || base === 'forgot-password' || base === 'blank' || base === 'invoice-details'" class="has-submenu"> -->
+              <a>Pages <i class="fas fa-chevron-down"></i></a>
+              <ul class="submenu" id="pages">
+                <li><a [routerLink]="'/voice-call'">Appel Vocal</a></li>
+                <li><a [routerLink]="'/video-call'">Appel Video</a></li>
+                <li><a [routerLink]="'/search-mentor'">Recherche Tuteur</a></li>
+                <li><a [routerLink]="'/component'">Composants</a></li>
+                <li class="has-submenu">
+                  <a href="javascript:void(0)">Factures</a>
+                  <ul class="submenu">
+                    <li><a [routerLink]="'/mentor/invoice'">Factures</a></li>
+                    <li><a [routerLink]="'/invoice-details'">Affichage de la facture</a></li>
+                  </ul>
+                </li>
+                <li><a [routerLink]="'/blank'">Accueil</a></li>
+
+                <li><a [routerLink]="'/register'">S'inscrire</a></li>
+                <li><a [routerLink]="'/login-page'">Se Connecter</a></li>
+                <li><a [routerLink]="'/forgot-password'">Mot de passe oublié</a></li>
+              </ul>
+            </li>
+
+
+
+
+
+
+
+          </ul>
+        </div>
+
+
+        <!-- <ng-container *ngIf="userInfo != null">
                 <ul class="main-nav"  *ngIf="isMentee">
                   <li [class.active]="base === '/'">
                     <a (click)="navigate('Home')" [routerLink]="'/'" >Accueil</a>
@@ -206,28 +209,24 @@
                   
                 </ul>
               </ng-container> -->
-              
-             
-              
-						
-          
-          
-            </div>
-          
-						<ul class="nav header-navbar-rht">
-							<li class="nav-item">
-								<a  *ngIf="userInfo ==null" class="nav-link header-register" [routerLink]="'/login-page'">Se Connecter</a>
-                <a  *ngIf="userInfo!=null" class="nav-link header-register" (click)="logOut()">Se déconnecter</a>
-							</li>
-							<li class="nav-item" *ngIf="userInfo ==null">
-								<a class="nav-link header-login" [routerLink]="'/register'">S'inscrire</a>
-							</li>
-						</ul>
-					</div>
-				</nav>
-			</header>
-			<!-- /Header -->
 
 
 
 
+
+
+      </div>
+
+      <ul class="nav header-navbar-rht">
+        <li class="nav-item">
+          <a *ngIf="userInfo ==null" class="nav-link header-register" [routerLink]="'/login-page'">Se Connecter</a>
+          <a *ngIf="userInfo!=null" class="nav-link header-register" (click)="logOut()">Se déconnecter</a>
+        </li>
+        <li class="nav-item" *ngIf="userInfo ==null">
+          <a class="nav-link header-login" [routerLink]="'/register'">S'inscrire</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<!-- /Header -->

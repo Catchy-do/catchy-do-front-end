@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
   mentees: any = [];
   reg_type = 'Mentee Register';
   isMentor = 'Are you a Mentor?';
-  
+
   regions!: RegionResp[];
   villes!: VilleResp[];
   pays!: PaysResp[];
@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
   selectedFiles?: FileList;
   progressInfos: any[] = [];
   files!: File[];
-  
+
 
   competencesList!: CompetenceResp[];
   selectedCompetence = new Array<CompetenceResp>();
@@ -50,7 +50,7 @@ export class RegisterComponent implements OnInit {
     public commonService: CommonServiceService,
     public router: Router,
     public pubServices: PublicServicesService,
-    public fb: UntypedFormBuilder,public userInfo:UserInfo,
+    public fb: UntypedFormBuilder, public userInfo: UserInfo,
   ) {
     this.registrationForm = new UntypedFormGroup({
       firstName: new UntypedFormControl('', [Validators.required, Validators.pattern('[a-zA-Z]+([a-zA-Z ]+)*')]),
@@ -74,9 +74,9 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
     this.getAllPays();
     this.getAllCompetences();
-    
+
   }
-  
+
 
   signup() {
     this.userInfo.firstName = this.registrationForm.get('firstName')?.value;
@@ -98,8 +98,8 @@ export class RegisterComponent implements OnInit {
       this.userInfo.competencesId.push(element.competenceId);
     });
     console.log(this.userInfo);
-    
-    
+
+
     this.pubServices.addUSer(this.userInfo).subscribe((res) => {
       this.result = res as Resps;
 
@@ -128,7 +128,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
- 
+
   onChangePass(e: any) {
     this.message = false;
     if (e != this.userInfo.password) {
@@ -137,23 +137,25 @@ export class RegisterComponent implements OnInit {
       this.message = false;
     }
   }
-  
-  getAllCompetences(){
+
+  getAllCompetences() {
     this.pubServices.getAllCompetences().subscribe(
-      (result) =>{
+      (result) => {
         this.competencesList = result as any[];
         console.log(this.competencesList);
-      }, (error) =>{
+      }, (error) => {
         console.log('Error occurred:', error);
       })
   }
 
   getAllPays() {
     this.pubServices.getAllPays().subscribe(
+
       (result) => {
+        console.log(result)
         this.result = result as Resps;
         this.pays = this.result.data as PaysResp[];
-      }, (error) =>{
+      }, (error) => {
         console.log('Error occurred:', error);
       });
   }
@@ -164,7 +166,7 @@ export class RegisterComponent implements OnInit {
       (result) => {
         this.result = result as Resps;
         this.regions = this.result.data as RegionResp[];
-      }, (error) =>{
+      }, (error) => {
         console.log('Error occurred:', error);
       });
   }
@@ -177,35 +179,35 @@ export class RegisterComponent implements OnInit {
       (result) => {
         this.result = result as Resps;
         this.villes = this.result.data.children as VilleResp[];
-      }, (error) =>{
+      }, (error) => {
         console.log('Error occurred:', error);
       });
   }
 
-  fileToBlob(file: File ): Blob  {
-    
-      return new Blob([file], { type: file.type });
-    
+  fileToBlob(file: File): Blob {
+
+    return new Blob([file], { type: file.type });
+
   }
-  selectFiles(event: any)  {
-    
+  selectFiles(event: any) {
+
     this.progressInfos = [];
     this.selectedFiles = event.target.files;
     // const reader = new FileReader();
-    
+
     // if (this.selectedFiles) {
     //   for (let i = 0; i < this.selectedFiles.length; i++) {
     //     reader.readAsDataURL(this.selectedFiles[i])
     //   }
     // }
     // console.log(this.files);
-    
-    
+
+
   }
 
   uploadFiles(): void {
-    
-  
+
+
     if (this.selectedFiles) {
       for (let i = 0; i < this.selectedFiles.length; i++) {
         this.upload(this.selectedFiles[i]);
@@ -248,7 +250,7 @@ export class RegisterComponent implements OnInit {
 
 
 
-   // getMentors() {
+  // getMentors() {
   //   this.commonService.getMentors().subscribe((res) => {
   //     this.mentors = res;
   //   });

@@ -63,15 +63,14 @@ export class LoginComponent implements OnInit {
 
   login(email: any, password: any) {
     this.authService.authenticate(email, password).
-      subscribe((result) => {
+      subscribe((result: any) => {
         result = result as any;
         console.log(result);
         this.usrTokenSvc.setAccessToken(result.access_token);
         this.usrTokenSvc.setConnectedUser(true);
         this.dataStore.setItem('username', email);
         this.dataStore.setItem('password', password);
-        this.userInfo.roles = [...result.roles];;
-        this.pubServices.getUserProfile(result.id).subscribe((response) => {
+        this.pubServices.getUserProfile(result.id).subscribe((response: any) => {
           let res = response as UserInfo;
           this.userInfo = res;
           this.userInfo.roles = [...result.roles];
@@ -87,11 +86,11 @@ export class LoginComponent implements OnInit {
             if (this.userInfo.roles[s] == "MENTOR") {
               this.commonService.nextmessage('MENTOR');
               this.mentorUser = true;
-              if(this.userInfo.isConfirmed)
-              this.router.navigate(['/mentor/dashboard']);
+              if (this.userInfo.isConfirmed)
+                this.router.navigate(['/mentor/dashboard']);
               else
 
-              this.router.navigate(['/mentor/settings']);
+                this.router.navigate(['/mentor/settings']);
             }
             if (this.userInfo.roles[s] == "ADMIN") {
               this.adminUser = true;
@@ -137,9 +136,9 @@ export class LoginComponent implements OnInit {
 
     let stompClient = this.webSocketService.connect();
 
-    stompClient.connect({}, frame => {
+    stompClient.connect({}, (frame: any) => {
 
-      stompClient.subscribe('/topic/notification/' + userinfo.notifID, notifications => {
+      stompClient.subscribe('/topic/notification/' + userinfo.notifID, (notifications: { body: string; }) => {
 
 
         this.notificationsmessage = JSON.parse(notifications.body).message

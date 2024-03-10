@@ -10,14 +10,14 @@ import { Resps } from 'src/app/services/model/response';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  appointments:any;
-  mentees:any;
-  userId :any; 
-  
+  appointments: any;
+  mentees: any;
+  userId: any;
+
 
   constructor(public commonService: CommonServiceService,
     public menteeService: MenteeServicesService,
-    public dataStorage: DataStorageService) {}
+    public dataStorage: DataStorageService) { }
 
   ngOnInit(): void {
     console.log("mentee dashboard")
@@ -26,11 +26,12 @@ export class DashboardComponent implements OnInit {
   }
 
   getAppointments() {
-    this.menteeService.getBookings(this.userId).subscribe((res)=>{
+    this.menteeService.getBookings(this.userId).subscribe((res) => {
       let result = res as Resps;
-      this.appointments = result.data.length;
-      
-      }
+
+      this.appointments = result.data != null ? result.data.length : 0;
+
+    }
     )
   }
 
