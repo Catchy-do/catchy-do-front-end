@@ -17,7 +17,7 @@
 						<div class="row">
 							<div class="col-lg-6">
 								<div class="form-group row">
-									<label class="form-control-label">First Name</label>
+									<label class="form-control-label">Prénom</label>
 									<div class="input-group">
 										<input id="firstName" type="text" placeholder="First Name" name="firstName"
 											formControlName="firstName" [(ngModel)]="userInfo.firstName" required
@@ -34,7 +34,7 @@
 
 							<div class="col-lg-6">
 								<div class="form-group row">
-									<label class="form-control-label">Last Name</label>
+									<label class="form-control-label">Nom</label>
 									<div class="input-group">
 										<input id="lastName" type="text" placeholder="Last Name" name="lastName"
 											formControlName="lastName" [(ngModel)]="userInfo.lastName" required
@@ -55,7 +55,7 @@
 						<div class="row">
 							<div class="col-lg-6">
 								<div class="form-group row">
-									<label class="form-control-label">Username</label>
+									<label class="form-control-label">Nom Utilisateur</label>
 									<div class="input-group ">
 										<input id="Username" type="text" placeholder="Username" name="User-name"
 											formControlName="username" [(ngModel)]="userInfo.username"
@@ -73,7 +73,7 @@
 							</div>
 							<div class="col-lg-6">
 								<div class="form-group row">
-									<label class="form-control-label">E-mail</label>
+									<label class="form-control-label">Mail</label>
 									<div class="input-group ">
 										<input id="email" type="text" placeholder="Email" name="email"
 											formControlName="email" [(ngModel)]="userInfo.email" required
@@ -92,7 +92,7 @@
 						<div class="row">
 							<div class="col-lg-6">
 								<div class="form-group row">
-									<label class="form-control-label">Password</label>
+									<label class="form-control-label">Mot de Passe</label>
 									<div class="input-group" id="show_hide_password">
 
 										<input id="password" [type]="checked ? 'password' : 'text'" class="form-control"
@@ -111,7 +111,7 @@
 							</div>
 							<div class="col-lg-6">
 								<div class="form-group row">
-									<label class="form-control-label">Confirm Password</label>
+									<label class="form-control-label">Confirmer Mot de Passe </label>
 									<div class="input-group" id="show_hide_password_confirm">
 
 										<input [type]="checked ? 'password' : 'text'" class="form-control"
@@ -135,7 +135,7 @@
 							<div class="col-xl-6">
 								<div class="form-group row">
 
-									<label class="col-lg-3 col-form-label">Country</label>
+									<label class="col-lg-3 col-form-label">Pays</label>
 									<div class="col-lg-9">
 										<select [(ngModel)]="selectedCountry" class="form-control"
 											(change)="getAllPaysRegion($event)" name="sel2"
@@ -146,7 +146,7 @@
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-lg-3 col-form-label">Region</label>
+									<label class="col-lg-3 col-form-label">Région</label>
 									<div class="col-lg-9">
 										<select [ngModel]="regions" class="form-control"
 											(ngModelChange)="getAllRVille($event)" name="sel3"
@@ -175,17 +175,17 @@
 							</div>
 							<div class="col-xl-6">
 								<div class="form-group row">
-									<label class="col-lg-3 col-form-label">Gender</label>
+									<label class="col-lg-3 col-form-label">Genre</label>
 									<div class="col-lg-9">
 										<select class="form-select" [(ngModel)]="userInfo.sexe"
 												 formControlName="sexe">
 											<option value="Male">Male</option>
-											<option value="Female"> Female</option>
+											<option value="Female"> Femelle</option>
 										</select>
 									</div>
 								</div>
 								<div class="form-group row">
-									<label class="col-lg-3 col-form-label">phone</label>
+									<label class="col-lg-3 col-form-label">Téléphone</label>
 									<div class="col-lg-9">
 										<input id="phoneNumber" type="text" placeholder="phone Number"
 											name="phoneNumber" formControlName="phoneNumber"
@@ -214,7 +214,7 @@
 									</div>
 								</div>
 								<div class="col-12 col-md-6" >
-									<label>Competences</label>
+									<label>Compétences</label>
 									<ng-select [(ngModel)]="selectedCompetence" class="form-select"
 									formControlName="competences" [multiple]="true" >
 										<ng-option [value]="c" *ngFor="let c of competencesList" >{{c.intitule}}</ng-option>
@@ -229,11 +229,11 @@
 
 					</div>
 					<div class="left-btn">
-						<button type="button" routerLink="/index" class="btn btn-secondary">cancel</button>
+						<button type="button" routerLink="/index" class="btn btn-secondary">Annuler</button>
 					</div>
 					<div class="right-btn">
 						<button (click)="signup()" [disabled]="registrationForm.invalid || message" type="submit"
-							class="btn btn-primary">confirm</button>
+							class="btn btn-primary">confirmer</button>
 					</div>
 					<!-- /Register Form -->
 				</div>
