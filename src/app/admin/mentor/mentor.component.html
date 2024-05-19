@@ -4,11 +4,11 @@
 		<div class="page-header">
 			<div class="row">
 				<div class="col-sm-12">
-					<h3 class="page-title">List of Mentors</h3>
+					<h3 class="page-title">Liste des Tuteurs</h3>
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a [routerLink]="'/admin'">Dashboard</a></li>
-						<li class="breadcrumb-item"><a href="javascript:(0);">Users</a></li>
-						<li class="breadcrumb-item active">Mentor</li>
+						<li class="breadcrumb-item"><a [routerLink]="'/admin'">Tableau de Bord</a></li>
+						<li class="breadcrumb-item"><a href="javascript:(0);">Utilisateurs</a></li>
+						<li class="breadcrumb-item active">Tuteur/rice</li>
 					</ul>
 				</div>
 			</div>
@@ -23,10 +23,10 @@
 							<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="datatable table table-hover table-center mb-0">
 								<thead>
 									<tr>
-										<th>Mentor Name</th>
-										<!-- <th>Course</th> -->
-										<th>Member Since</th>
-										<th>Account Status</th>
+										<th> Prénom</th>
+										<th>Cours</th>
+										<th>Membre depuis</th>
+										<th> Statut du Compte</th>
 
 									</tr>
 								</thead>
@@ -52,7 +52,7 @@
 										<td>
 											<div class="status-toggle">
 												<input type="checkbox" id="status_{{i + 1}}" class="check"  [(ngModel)]="mentor.isConfirmed"  (click)="openModal(modal)" >
-												<label for="status_{{i + 1}}" class="checktoggle">checkbox</label>
+												<label for="status_{{i + 1}}" class="checktoggle">case à cocher </label>
 												<!-- <label for="status_{{i + 1}}">{{mentor.isConfirmed}}</label> -->
 											</div>
 										</td>
@@ -60,18 +60,18 @@
 										<ng-template  #modal>
 											<div class="modal-content" >
 												<div class="modal-header">
-												  <h5 class="modal-title">Confirm Mentor</h5>
+												  <h5 class="modal-title">Valider Tuteur</h5>
 												  <button type="button" class="btn-close"  data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()"></button>
 												</div>
 												<div class="modal-body">
 												  
-													<p *ngIf="mentor.isConfirmed">Are you sure to Confirm {{mentor.firstName}} ?</p>
-													<p *ngIf="!mentor.isConfirmed">Are you sure to Deactivate {{mentor.firstName}} ?</p>
+													<p *ngIf="mentor.isConfirmed">Etes-vous sûr de valider son profil? {{mentor.firstName}} ?</p>
+													<p *ngIf="!mentor.isConfirmed">Etes-vous sûr de déactiver son profil? {{mentor.firstName}} ?</p>
 													<span></span>
 													
 													<div class="submit-section text-center">
-													  <a type="button" class="btn btn-rounded btn-primary me-2" data-bs-dismiss="modal"  aria-label="Confirm" (click)="updateStatus(mentor.isConfirmed, mentor.userId)">Confirm</a>
-													  <a type="button"class="btn btn-rounded btn-secondary me-2" data-bs-dismiss="modal"  aria-label="Close" (click)="closeModal()">Cancel</a>
+													  <a type="button" class="btn btn-rounded btn-primary me-2" data-bs-dismiss="modal"  aria-label="Confirm" (click)="updateStatus(mentor.isConfirmed, mentor.userId)">Confirmer</a>
+													  <a type="button"class="btn btn-rounded btn-secondary me-2" data-bs-dismiss="modal"  aria-label="Close" (click)="closeModal()">Annuler</a>
 													</div>
 												  
 												</div>
