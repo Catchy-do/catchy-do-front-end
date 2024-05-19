@@ -4,11 +4,11 @@
 		<div class="page-header">
 			<div class="row">
 				<div class="col-sm-12">
-					<h3 class="page-title">List of Mentee</h3>
+					<h3 class="page-title">Liste des Apprenants</h3>
 					<ul class="breadcrumb">
-						<li class="breadcrumb-item"><a [routerLink]="'/admin'">Dashboard</a></li>
-						<li class="breadcrumb-item"><a href="javascript:(0);">Users</a></li>
-						<li class="breadcrumb-item active">Mentee</li>
+						<li class="breadcrumb-item"><a [routerLink]="'/admin'">Tableau de Bord</a></li>
+						<li class="breadcrumb-item"><a href="javascript:(0);">Utilisateurs</a></li>
+						<li class="breadcrumb-item active">Apprenants</li>
 					</ul>
 				</div>
 			</div>
@@ -24,11 +24,11 @@
 							<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="datatable table table-hover table-center mb-0">
 								<thead>
 									<tr>
-										<th>Mentee Name</th>
-										<th>Course</th>
-										<th>Member Since</th>
-										<th>Earned</th>
-										<th>Account Status</th>
+										<th>Nom Apprenant</th>
+										<th>Cours</th>
+										<th>Membre depuis</th>
+										<th>Revenu</th>
+										<th> Statut Compte</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -45,7 +45,7 @@
 										<td>
 											<div class="status-toggle">
 												<input type="checkbox" id="status_{{i + 1}}" class="check" checked>
-												<label for="status_{{i + 1}}" class="checktoggle">checkbox</label>
+												<label for="status_{{i + 1}}" class="checktoggle">case à cocher</label>
 											</div>
 										</td>
 									</tr>
