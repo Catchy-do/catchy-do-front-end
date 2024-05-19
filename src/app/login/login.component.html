@@ -7,15 +7,15 @@
 				<div class="login-right">
 					<div class="login-header">
 						<h3>Se Connecter <span>Catchy</span></h3>
-						<p class="text-muted">Accéder à notre tableau de bord</p>
+						<p class="text-muted">Accéder au tableau de bord</p>
 					</div>
 					<form>
 						<div class="form-group">
-							<label class="form-control-label">Adresse mail</label>
+							<label class="form-control-label">Email</label>
 							<input type="email" name="email" id="email" class="form-control floating" [(ngModel)]="email">
 						</div>
 						<div class="form-group">
-							<label class="form-control-label">Mot de passe</label>
+							<label class="form-control-label">Mot de Passe</label>
 							<input type="password" name="password" id="password" class="form-control floating" [(ngModel)]="password">
 						</div>
 						<!-- <div>
@@ -25,9 +25,9 @@
 							</label>
 						</div> -->
 						<div class="text-end">
-							<a class="forgot-link"  [routerLink]="'/forgot-password'">Mot de passe oublié?</a>
+							<a class="forgot-link"  [routerLink]="'/forgot-password'">Mot de Passe oublié?</a>
 						</div>
-						<button class="btn btn-primary w-100 btn-lg login-btn" type="button" (click)="login(this.email,this.password)">Connexion</button>
+						<button class="btn btn-primary w-100 btn-lg login-btn" type="button" (click)="login(this.email,this.password)">Se connecter</button>
 						<div class="text-center dont-have">Vous n'avez pas de compte ? <a class="me-2" [routerLink]="'/register'">S'inscrire</a> 
 							<a (click)="goto()">Accueil</a></div>
 					</form>
