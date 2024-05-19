@@ -31,7 +31,7 @@
 					</div>					
 					<div class="card blog-share clearfix">
 						<div class="card-header">
-							<h4 class="card-title">Share the post</h4>
+							<h4 class="card-title">Partager la publication</h4>
 						</div>
 						<div class="card-body">
 							<ul class="social-share">
@@ -45,7 +45,7 @@
 					</div>
 					<div class="card author-widget clearfix">
 					<div class="card-header">
-						<h4 class="card-title">About Author</h4>
+						<h4 class="card-title">A propos L'Auteur</h4>
 						</div>
 						<div class="card-body">
 							<div class="about-author">
@@ -55,15 +55,15 @@
 									</div>
 								</div>
 								<div class="author-details">
-									<a [routerLink]="'/admin/mentor-profile'" class="blog-author-name">Darren Elder</a>
-									<p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+									<a [routerLink]="'/admin/mentor-profile'" class="blog-author-name"> Auteur</a>
+									<p class="mb-0"> Biographie</p>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div class="card blog-comments clearfix">
 						<div class="card-header">
-							<h4 class="card-title">Comments (12)</h4>
+							<h4 class="card-title">Commentaires (12)</h4>
 						</div>
 						<div class="card-body pb-0">
 						<ul class="comments-list">
@@ -77,7 +77,7 @@
 											<span class="blog-author-name">{{comment.name}}</span>
 										</span>
 										<p>{{comment.comment}}</p>
-										<p class="blog-date">Dec 6, 2017</p>
+										<p class="blog-date">2024</p>
 										<!-- <a class="comment-btn" href="javascript:void(0)">
 											<i class="fas fa-reply"></i> Reply
 										</a> -->
@@ -89,24 +89,24 @@
 					</div>					
 					<div class="card new-comment clearfix">
 						<div class="card-header">
-							<h4 class="card-title">Leave Comment</h4>
+							<h4 class="card-title">Laisser un Commentaire</h4>
 						</div>
 						<div class="card-body">
 							<form>
 								<div class="form-group">
-									<label>Name <span class="text-danger">*</span></label>
+									<label>Prénom <span class="text-danger">*</span></label>
 									<input type="text" class="form-control" name="name" [(ngModel)]="name">
 								</div>
 								<div class="form-group">
-									<label>Your Email Address <span class="text-danger">*</span></label>
+									<label>Votre Email <span class="text-danger">*</span></label>
 									<input type="email" class="form-control" name="email"  [(ngModel)]="email">
 								</div>
 								<div class="form-group">
-									<label>Comments <span class="text-danger">*</span></label>
+									<label>Commentaires <span class="text-danger">*</span></label>
 									<textarea rows="4" class="form-control" name="usercomment" [(ngModel)]="usercomment"></textarea>
 								</div>
 								<div class="submit-section">
-									<button class="btn btn-primary submit-btn" type="submit" (click)="comment()">Submit</button>
+									<button class="btn btn-primary submit-btn" type="submit" (click)="comment()">Soumettre</button>
 								</div>
 							</form>
 						</div>
@@ -130,7 +130,7 @@
 				<!-- Latest Posts -->
 				<div class="card post-widget">
 					<div class="card-header">
-						<h4 class="card-title">Latest Posts</h4>
+						<h4 class="card-title">Derniéres Publications</h4>
 					</div>
 					<div class="card-body">
 						<ul class="latest-posts">
@@ -154,7 +154,7 @@
 				<!-- Categories -->
 				<div class="card category-widget">
 					<div class="card-header">
-						<h4 class="card-title">Blog Categories</h4>
+						<h4 class="card-title">Catégorie du Blog</h4>
 					</div>
 					<div class="card-body" *ngIf="tags">
 						<ul class="categories">
