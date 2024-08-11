@@ -65,6 +65,7 @@ export class LoginComponent implements OnInit {
     this.authService.authenticate(email, password).
       subscribe((result: any) => {
         result = result as any;
+
         this.usrTokenSvc.setAccessToken(result.access_token);
         this.usrTokenSvc.setConnectedUser(true);
         this.pubServices.getUserProfile(result.id).subscribe((response: any) => {
@@ -74,6 +75,7 @@ export class LoginComponent implements OnInit {
           this.notifServicesSubscription(this.userInfo);
           this.userAuth.setUserInfoDetails(this.userInfo);
           this.dataStore.setUserInfo(this.userInfo);
+          this.commonService.nextdataSource(this.userInfo);
           for (let s = 0; s < this.userInfo.roles.length; s++) {
             if (this.userInfo.roles[s] == "MENTEE") {
               this.menteeUser = true;

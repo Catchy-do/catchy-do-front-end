@@ -36,6 +36,7 @@ export class SidemenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.splitVal = this.router.url.split('/');
     this.base = this.splitVal[1];
     this.page = this.splitVal[2];

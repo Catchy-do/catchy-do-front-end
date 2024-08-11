@@ -63,24 +63,7 @@ export class HeaderComponent implements OnInit {
         }
       }
     });
-    // this.commonService.message.subscribe((res) => {
-
-
-
-    //   if (res === 'patientLogin') {
-    //     this.auth = true;
-    //     this.isPatient = true;
-    //   }
-    //   if (res === 'doctorLogin') {
-    //     this.auth = true;
-    //     this.isPatient = false;
-    //   }
-    //   if (res === 'logout') {
-    //     this.auth = false;
-    //     this.isPatient = false;
-    //     this.dataStore.removeFromStorage("userInfo");
-    //   }
-    // });
+   
     this.isMentee = false;
     this.isMentor = false;
     this.isAdmin = false;
@@ -100,13 +83,11 @@ export class HeaderComponent implements OnInit {
         }
       }
     }
-
+    
     this.commonService.dataSource.subscribe(data => this.userInfo = data);
   }
 
   ngOnInit(): void {
-console.log("geaaaader")
-console.log(this.userInfo)
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         $('html').removeClass('menu-opened');
@@ -114,11 +95,13 @@ console.log(this.userInfo)
         $('.main-wrapper').removeClass('slide-nav');
       }
     });
+    
     this.commonService.dataSource.subscribe(data => this.userInfo = data);
+    console.log(this.userInfo)
   }
 
   ngAfterViewInit() {
-
+    console.log(this.userInfo)
     this.cdr.detectChanges();
     this.loadDynmicallyScript("assets/js/script.js");
   }
