@@ -179,7 +179,11 @@
 									<li [class.active]="page === 'lock-screen'"><a [routerLink]="'lock-screen'"> Vérrouiller Ecran </a></li>
 								</ul>
 							</li>
-							<li class="submenu">
+							<li [class.active]="page === ''">
+								<a href="javascript:void(0)" (click)="logout()"><i class="fas fa-sign-out-alt"></i><span> Se déconnecter</span> <span class="menu-arrow"></span></a>
+								
+							</li>
+						<!---	<li class="submenu">
 								<a href="javascript:void(0)"><i class="fa fa-exclamation-circle"></i><span> Erreur Page </span><span class="menu-arrow"></span></a>
 								<ul style="display: none;">
 									<li [class.active]="page === 'error-first'"><a [routerLink]="'error-first'">Erreur 404 </a></li>
@@ -188,8 +192,8 @@
 							</li>
 							<li [class.active]="page === 'blank'">
 								<a [routerLink]="'blank-page'"><i class="fa fa-file"></i><span>Page Vide</span></a>
-							</li>
-							<li class="menu-title">
+							</li>-->
+						<!--	<li class="menu-title">
 								<span> UI Interface</span>
 							</li>
 							<li [class.active]="page === 'components'">
@@ -234,7 +238,7 @@
 										<a href="javascript:void(0);"> <span>Level 1</span></a>
 									</li>
 								</ul>
-							</li>
+							</li>-->
 						</ul>
 					</div>
                 </div>

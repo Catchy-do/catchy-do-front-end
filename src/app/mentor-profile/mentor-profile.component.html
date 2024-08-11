@@ -10,7 +10,7 @@
                         <div class="mentor-widget">
                             <div class="user-info-left align-items-center">
                                 <div class="mentor-img d-flex flex-wrap justify-content-center">
-                                   
+                                    
                                         <a [routerLink]="'/mentorProfile-profile'" [queryParams]="{id: mentorProfile.userId}">
                                             <img *ngIf="mentorProfile.imgUrl==null"src="assets/img/user/avatar-user-male.png"  class="img-fluid" alt="User Image">
                                             <img  *ngIf="mentorProfile.imgUrl!=null" src="{{mentorProfile.imgUrl}}" class="img-fluid" alt="User Image">

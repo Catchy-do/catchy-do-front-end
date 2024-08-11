@@ -22,6 +22,9 @@ import {
   ApexResponsive,
   ApexPlotOptions
 } from "ng-apexcharts";
+import { MenteeServicesService } from 'src/app/services/mentee/mentee-services.service';
+import { PublicServicesService } from 'src/app/services/public/public-services.service';
+import { UserInfo } from '../model/userInfo';
 export type chartrevenue = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -165,9 +168,43 @@ export class DashboardComponent implements OnInit {
     },
     responsive: []
   };
-  constructor() {}
+
+  mentors!: UserInfo[];
+  mentorProfile: any | undefined;
+  mentees!: UserInfo[];
+  constructor( public pubServices: PublicServicesService,
+    public menteeService: MenteeServicesService) {}
 
   ngOnInit(): void {
+    this.getMentors();
+    this.getMentees();
+  }
+  getMentors() {
+    this.menteeService.getMentors().subscribe(
+      (res) => {
+        this.mentors = res as UserInfo[];
+        // this.mentors.forEach(elt =>{
+        //   this.getuserImage(elt);
+
+        // })
+      },
+      (error) => {
+        console.log('Error occurred:', error);
+      }
+    );
+  }
+  getMentees() {
+    this.menteeService.getMentees().subscribe(
+      (res) => {
+        this.mentees = res as UserInfo[];
     
+      },
+      (error) => {
+        console.log('Error occurred:', error);
+      }
+    );
+  }
+  getCompetenceIntitules(mentor:any): string {
+    return mentor.competences.map((comp: { intitule: any; }) => comp.intitule).join(', ');
   }
 }

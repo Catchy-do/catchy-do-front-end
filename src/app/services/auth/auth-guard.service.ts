@@ -11,8 +11,6 @@
    
 
    canActivate(route: ActivatedRouteSnapshot){
-    console.log('this.auth.isUserConnected()--------------------------------------------------------')
-    console.log(this.auth.isUserConnected())
      if (!this.auth.isUserConnected()) {
        this.router.navigate(['/login-page']);
        return false;

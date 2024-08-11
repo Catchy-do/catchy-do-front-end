@@ -21,14 +21,18 @@
                     <div class="row align-items-center">
                         <div class="col-auto profile-image">
                             <a href="#">
-                                <img class="rounded-circle" alt="User Image" src="assets/admin/img/profiles/avatar-12.jpg">
+                                
+                                <a >
+                                    <img *ngIf="mentorProfile.imgUrl==null"src="assets/img/user/avatar-user-male.png"  class="img-fluid" alt="User Image">
+                                    <img  *ngIf="mentorProfile.imgUrl!=null" src="{{mentorProfile.imgUrl}}" class="img-fluid" alt="User Image">
+                                </a>
                             </a>
                         </div>
                         <div class="col ml-md-n2 profile-user-info">
-                            <h4 class="user-name mb-0">Arij Mgaidi</h4>
-                            <h6 class="text-muted">arij27@gmail.com</h6>
-                            <div class="pb-3"><i class="fa fa-map-marker"></i>La soukra, Ariana</div>
-                            <div class="about-text"> Licence en Civilisation Anglaise</div>
+                            <h4 class="user-name mb-0">{{mentorProfile.firstName}} {{mentorProfile.lastName}}</h4>
+                            <h6 class="text-muted">{{mentorProfile.email}}</h6>
+                            <div class="pb-3"><i class="fa fa-map-marker"></i>{{mentorProfile.adresse}}</div>
+                            <div class="about-text"> {{ getCompetenceIntitules() }}</div>
                         </div>
                         <div class="col-auto profile-btn">
                         </div>
@@ -39,9 +43,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#about" id="">A propos</a>
                         </li>
-                        <li class="nav-item">
+                        <!--<li class="nav-item">
                             <a class="nav-link" data-bs-toggle="tab" data-bs-target="#pass">Mot de Passe</a>
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
                 <div class="tab-content profile-tab-cont">
@@ -65,26 +69,23 @@
                                         </h5>
                                         <div class="row">
                                             <p class="col-sm-2 text-muted mb-0 mb-sm-3">Nom et Prénom</p>
-                                            <p class="col-sm-10"></p>
+                                            <p class="col-sm-10">{{mentorProfile.firstName}} {{mentorProfile.lastName}}</p>
                                         </div>
                                         <div class="row">
                                             <p class="col-sm-2 text-muted mb-0 mb-sm-3">Date de Naissance</p>
-                                            <p class="col-sm-10"></p>
+                                            <p class="col-sm-10">{{mentorProfile.dateOfBirth}}</p>
                                         </div>
                                         <div class="row">
                                             <p class="col-sm-2 text-muted mb-0 mb-sm-3">Email ID</p>
-                                            <p class="col-sm-10">johndoe@example.com</p>
+                                            <p class="col-sm-10">{{mentorProfile.email}}</p>
                                         </div>
                                         <div class="row">
                                             <p class="col-sm-2 text-muted mb-0 mb-sm-3">Téléphone</p>
-                                            <p class="col-sm-10"></p>
+                                            <p class="col-sm-10">{{mentorProfile.phoneNumber}}</p>
                                         </div>
                                         <div class="row">
                                             <p class="col-sm-2 text-muted mb-0">Adresse</p>
-                                            <p class="col-sm-10 mb-0">,<br>
-                                            ,<br>
-                                            ,<br>
-                                            Tunisia.</p>
+                                            <p class="col-sm-10 mb-0">{{mentorProfile.adresse}}.</p>
                                         </div>
                                     </div>
                                 </div>

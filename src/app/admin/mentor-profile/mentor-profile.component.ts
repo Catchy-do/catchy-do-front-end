@@ -1,6 +1,10 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
+import { CommonServiceService } from 'src/app/common-service.service';
+import { PublicServicesService } from 'src/app/services/public/public-services.service';
+import { DataStorageService } from 'src/app/services/storage/data-storage.service';
 
 @Component({
   selector: 'app-mentor-profile',
@@ -14,10 +18,34 @@ export class MentorProfileComponent implements OnInit {
   name:any;
   id:any;
   key:any;
-  constructor(private Router: Router, private modalService: BsModalService) {}
+  mentorProfile: any | undefined;
+  constructor(private Router: Router, private modalService: BsModalService,
+    public commonService: CommonServiceService,
+    public publicServices :PublicServicesService,
+    private route: ActivatedRoute,
+    private toastr: ToastrService,
+    public storage: DataStorageService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    window.scrollTo(0, 0);
+    this.id = this.route.snapshot.queryParams['id'];
+    if(this.id==null){
 
+      this.id = this.storage.getUserInfo().userId;
+    }
+    this.getMentorProfile();
+  }
+  getMentorProfile() {
+   
+    this.publicServices.getUserProfile(this.id).subscribe((res) => {
+      this.mentorProfile = res;
+      console.log(this.mentorProfile)
+    });
+  }
+  getCompetenceIntitules(): string {
+    return this.mentorProfile.competences.map((comp: { intitule: any; }) => comp.intitule).join(', ');
+  }
   about() {
     this.changePass = false;
     this.personalDetails = true;

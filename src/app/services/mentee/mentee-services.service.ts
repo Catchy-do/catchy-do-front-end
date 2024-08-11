@@ -6,6 +6,10 @@ import { SERVER_URL } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class MenteeServicesService {
+  getMentees() {
+    let params = new HttpParams()
+    return this.httpService.get(SERVER_URL + '/catchy/menteeList');
+  }
 
   constructor(private httpService: HttpClient) {}
   

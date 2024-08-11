@@ -76,4 +76,10 @@ export class SidemenuComponent implements OnInit {
       this.bellCollapsed = true;
     }
   }
+
+  logout() {
+    localStorage.clear();
+    this.commonService.nextmessage('logout');
+    this.router.navigate(['/login-page']);
+  }
 }

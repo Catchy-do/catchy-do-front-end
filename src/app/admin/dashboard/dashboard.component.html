@@ -173,15 +173,18 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
+									<tr  *ngFor="let mentor of mentors">
 										<td>
 											<h2 class="table-avatar">
-												<a [routerLink]="'/admin/mentor-profile'" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/admin/img/profiles/avatar-08.jpg" alt="User Image"></a>
-												<a [routerLink]="'/admin/mentor-profile'"> Arij Mgaidi </a>
+												
+												<a [routerLink]="'/admin/mentor-profile'"[queryParams]="{id: mentor.userId}" class="avatar avatar-sm me-2">
+													<img *ngIf="mentor.imgUrl==null"src="assets/img/user/avatar-user-male.png"  class="img-fluid" alt="User Image">
+												   <img  *ngIf="mentor.imgUrl!=null" src="{{mentor.imgUrl}}" class="img-fluid" alt="User Image"></a>
+												<a [routerLink]="'/admin/mentor-profile'" [queryParams]="{id: mentor.userId}"> {{mentor.firstName}} {{mentor.lastName}} </a>
 											</h2>
 										</td>
-										<td>Anglais</td>
-										<td>200 DT</td>
+										<td>{{ getCompetenceIntitules(mentor) }}</td>
+										<td>  -- DT</td>
 										<td>
 											<i class="fe fe-star text-warning"></i>
 											<i class="fe fe-star text-warning"></i>
@@ -190,40 +193,8 @@
 											<i class="fe fe-star-o text-secondary"></i>
 										</td>
 									</tr>
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a [routerLink]="'/admin/mentor-profile'" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/admin/img/profiles/avatar-07.jpg" alt="User Image"></a>
-												<a [routerLink]="'/admin/mentor-profile'"> Manel Belgacemi </a>
-											</h2>
-										</td>
-										<td>Espagnole</td>
-										<td>150DT</td>
-										<td>
-											<i class="fe fe-star text-warning"></i>
-											<i class="fe fe-star text-warning"></i>
-											<i class="fe fe-star text-warning"></i>
-											<i class="fe fe-star text-warning"></i>
-											<i class="fe fe-star-o text-secondary"></i>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a [routerLink]="'/admin/mentor-profile'" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/admin/img/profiles/avatar-17.jpg" alt="User Image"></a>
-												<a [routerLink]="'/admin/mentor-profile'"> Arbia Hosni</a>
-											</h2>
-										</td>
-										<td>Anglais</td>
-										<td>500DT</td>
-										<td>
-											<i class="fe fe-star text-warning"></i>
-											<i class="fe fe-star text-warning"></i>
-											<i class="fe fe-star text-warning"></i>
-											<i class="fe fe-star text-warning"></i>
-											<i class="fe fe-star-o text-secondary"></i>
-										</td>
-									</tr>
+									
+									
 								</tbody>
 							</table>
 						</div>
@@ -249,61 +220,22 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
+									<tr *ngFor="let mentee  of mentees">
 										<td>
 											<h2 class="table-avatar">
-												<a [routerLink]="'/admin/mentor-profile'" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/admin/img/user/user.jpg" alt="User Image"></a>
-												<a [routerLink]="'/admin/mentor-profile'"> Fatma Hosni</a>
+												<a [routerLink]="'/admin/mentor-profile'" [queryParams]="{id: mentee.userId}"class="avatar avatar-sm me-2">
+													<img *ngIf="mentee.imgUrl==null"src="assets/img/user/avatar-user-male.png"  class="img-fluid" alt="User Image">
+												   <img  *ngIf="mentee.imgUrl!=null" src="{{mentee.imgUrl}}" class="img-fluid" alt="User Image">
+												
+												</a>
+												<a [routerLink]="'/admin/mentor-profile'"> {{mentee.firstName}} {{mentee.lastName}}</a>
 											</h2>
 										</td>
-										<td>01</td>
+										<td>{{mentee.phoneNumber}} </td>
 										<td>20 Mars 2024</td>
-										<td class="text-end">150DT</td>
+										<td class="text-end"> -- DT</td>
 									</tr>
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a [routerLink]="'/admin/mentor-profile'" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/admin/img/user/user1.jpg" alt="User Image"></a>
-												<a [routerLink]="'/admin/mentor-profile'"> Emna Wahebi </a>
-											</h2>
-										</td>
-										<td>233</td>
-										<td>22 Avril 2024</td>
-										<td class="text-end">300DT</td>
-									</tr>
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a [routerLink]="'/admin/mentor-profile'" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/admin/img/user/user2.jpg" alt="User Image"></a>
-												<a [routerLink]="'/admin/mentor-profile'"> Kanil Ben Hamda</a>
-											</h2>
-										</td>
-										<td>003</td>
-										<td>21 Avril 2024</td>
-										<td class="text-end">300DT</td>
-									</tr>
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a [routerLink]="'/admin/mentor-profile'" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/admin/img/user/user3.jpg" alt="User Image"></a>
-												<a [routerLink]="'/admin/mentor-profile'"> Khouloud Hajri </a>
-											</h2>
-										</td>
-										<td>004</td>
-										<td>21 May 2024</td>
-										<td class="text-end">400DT</td>
-									</tr>
-									<tr>
-										<td>
-											<h2 class="table-avatar">
-												<a [routerLink]="'/admin/mentor-profile'" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/admin/img/user/user4.jpg" alt="User Image"></a>
-												<a [routerLink]="'/admin/mentor-profile'"> Manel Belgacemi </a>
-											</h2>
-										</td>
-										<td>005</td>
-										<td>18 Mars 2024</td>
-										<td class="text-end">500DT</td>
-									</tr>
+									
 								</tbody>
 							</table>
 						</div>
@@ -337,15 +269,15 @@
 									<tr>
 										<td>
 											<h2 class="table-avatar">
-												<a [routerLink]="'/admin/mentor-profile'" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/admin/img/profiles/avatar-08.jpg" alt="User Image"></a>
-												<a [routerLink]="'/admin/mentor-profile'"> Arbia Hosni </a>
+												<a  class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/admin/img/profiles/avatar-08.jpg" alt="User Image"></a>
+												<a > Arbia Hosni </a>
 											</h2>
 										</td>
 										<td> Anglais</td>
 										<td>
 											<h2 class="table-avatar">
-												<a [routerLink]="'/admin/mentor-profile'" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/admin/img/user/user.jpg" alt="User Image"></a>
-												<a [routerLink]="'/admin/mentor-profile'"> Eline Hosni</a>
+												<a class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/admin/img/user/user.jpg" alt="User Image"></a>
+												<a > Eline Hosni</a>
 											</h2>
 										</td>
 										<td>04 May 2024 <span class="text-primary d-block">11.00 AM - 13.00 AM</span></td>
@@ -362,15 +294,15 @@
 									<tr>
 										<td>
 											<h2 class="table-avatar">
-												<a [routerLink]="'/admin/mentor-profile'" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/admin/img/profiles/avatar-07.jpg" alt="User Image"></a>
-												<a [routerLink]="'/admin/mentor-profile'">Arij Mgaidi</a>
+												<a class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/admin/img/profiles/avatar-07.jpg" alt="User Image"></a>
+												<a >Arij Mgaidi</a>
 											</h2>
 										</td>
 										<td>Anglais</td>
 										<td>
 											<h2 class="table-avatar">
-												<a [routerLink]="'/admin/mentor-profile'" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/admin/img/user/user1.jpg" alt="User Image"></a>
-												<a [routerLink]="'/admin/mentor-profile'"> Fatma Hosni </a>
+												<a  class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/admin/img/user/user1.jpg" alt="User Image"></a>
+												<a > Fatma Hosni </a>
 											</h2>
 										</td>
 
@@ -388,15 +320,16 @@
 									<tr>
 										<td>
 											<h2 class="table-avatar">
-												<a [routerLink]="'/admin/mentor-profile'" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/admin/img/profiles/avatar-17.jpg" alt="User Image"></a>
-												<a [routerLink]="'/admin/mentor-profile'">Manel Belgacemi</a>
+												<a  class="avatar avatar-sm me-2">
+													<img class="avatar-img rounded-circle" src="assets/admin/img/profiles/avatar-17.jpg" alt="User Image"></a>
+												<a >Manel Belgacemi</a>
 											</h2>
 										</td>
 										<td>Espagnole</td>
 										<td>
 											<h2 class="table-avatar">
-												<a [routerLink]="'/admin/mentor-profile'" class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/admin/img/user/user2.jpg" alt="User Image"></a>
-												<a [routerLink]="'/admin/mentor-profile'"> Emna Wahebi </a>
+												<a  class="avatar avatar-sm me-2"><img class="avatar-img rounded-circle" src="assets/admin/img/user/user2.jpg" alt="User Image"></a>
+												<a > Emna Wahebi </a>
 											</h2>
 										</td>
 										<td> 25 May 2024 <span class="text-primary d-block">17.00 PM - 19.00 PM</span></td>
