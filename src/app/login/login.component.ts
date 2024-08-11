@@ -68,21 +68,23 @@ export class LoginComponent implements OnInit {
 
         this.usrTokenSvc.setAccessToken(result.access_token);
         this.usrTokenSvc.setConnectedUser(true);
+        console.log(this.usrTokenSvc.isUserConnected())
+        this.dataStore.setItem("token",result.access_token);
         this.pubServices.getUserProfile(result.id).subscribe((response: any) => {
           let res = response as UserInfo;
           this.userInfo = res;
-          this.userInfo.roles = [...result.roles];
+          this.userInfo.role = [...result.roles];
           this.notifServicesSubscription(this.userInfo);
           this.userAuth.setUserInfoDetails(this.userInfo);
           this.dataStore.setUserInfo(this.userInfo);
           this.commonService.nextdataSource(this.userInfo);
-          for (let s = 0; s < this.userInfo.roles.length; s++) {
-            if (this.userInfo.roles[s] == "MENTEE") {
+          for (let s = 0; s < this.userInfo.role.length; s++) {
+            if (this.userInfo.role[s] == "MENTEE") {
               this.menteeUser = true;
               this.commonService.nextmessage('mentee');
               this.router.navigate(['/mentee/dashboard']);
             }
-            if (this.userInfo.roles[s] == "MENTOR") {
+            if (this.userInfo.role[s] == "MENTOR") {
               this.commonService.nextmessage('MENTOR');
               this.mentorUser = true;
               if (this.userInfo.isConfirmed)
@@ -91,7 +93,7 @@ export class LoginComponent implements OnInit {
 
                 this.router.navigate(['/mentor/settings']);
             }
-            if (this.userInfo.roles[s] == "ADMIN") {
+            if (this.userInfo.role[s] == "ADMIN") {
               this.adminUser = true;
               this.commonService.nextmessage('admin');
               this.router.navigate(['/admin/dashboard']);

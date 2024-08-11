@@ -71,14 +71,14 @@ export class HeaderComponent implements OnInit {
 
     if (this.userInfo != null) {
       this.isConfirmed = this.userInfo.isConfirmed;
-      for (let s = 0; s < this.userInfo.roles.length; s++) {
-        if (this.userInfo.roles[s] == "MENTEE") {
+      for (let s = 0; s < this.userInfo.role.length; s++) {
+        if (this.userInfo.role[s] == "MENTEE") {
           this.isMentee = true;
         }
-        if (this.userInfo.roles[s] == "MENTOR") {
+        if (this.userInfo.role[s] == "MENTOR") {
           this.isMentor = true;
         }
-        if (this.userInfo.roles[s] == "ADMIN") {
+        if (this.userInfo.role[s] == "ADMIN") {
           this.isAdmin = true;
         }
       }
@@ -98,10 +98,35 @@ export class HeaderComponent implements OnInit {
     
     this.commonService.dataSource.subscribe(data => this.userInfo = data);
     console.log(this.userInfo)
+    if(this.userInfo==null){
+      this.loadData()
+    }
   }
+loadData(){
+  this.userInfo = this.dataStore.getUserInfo() as UserInfo;
 
+  if (this.userInfo != null) {
+    this.isConfirmed = this.userInfo.isConfirmed;
+    for (let s = 0; s < this.userInfo.role.length; s++) {
+      if (this.userInfo.role[s] == "MENTEE") {
+        this.isMentee = true;
+      }
+      if (this.userInfo.role[s] == "MENTOR") {
+        this.isMentor = true;
+      }
+      if (this.userInfo.role[s] == "ADMIN") {
+        this.isAdmin = true;
+      }
+    }
+    this.cdr.detectChanges();
+    this.loadDynmicallyScript("assets/js/script.js");
+  }
+  this.commonService.dataSource.subscribe(data => this.userInfo = data);
+}
   ngAfterViewInit() {
-    console.log(this.userInfo)
+    if(this.userInfo==null){
+      this.loadData()
+    }
     this.cdr.detectChanges();
     this.loadDynmicallyScript("assets/js/script.js");
   }
@@ -150,6 +175,7 @@ export class HeaderComponent implements OnInit {
   logOut() {
     this.pubServices.logout(this.userInfo?.userId);
     this.dataStore.removeFromStorage("userInfo");
+    this.dataStore.removeFromStorage("token");
     this.userInfo = null;
     this.commonService.nextmessage('logout');
     this.userAuth.logout();

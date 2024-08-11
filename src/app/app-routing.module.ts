@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-//import { AuthGuardService } from './services/auth/auth-guard.service';
-import { RoleGuardGuard } from './services/core/guards/role-guard.guard';
-import { AuthGuardGuard } from './services/core/guards/auth-guard.guard';
+import { AuthGuardService } from './services/auth/auth-guard.service';
 
 
 const routes: Routes = [
@@ -12,13 +10,13 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
   {
-    canActivate: [AuthGuardGuard,],
+    canActivate: [AuthGuardService,],
     path: 'mentor',
     loadChildren: () =>
       import('./mentor/mentor.module').then((m) => m.MentorModule),
   },
   {
-    canActivate: [AuthGuardGuard,],
+    canActivate: [AuthGuardService,],
     path: 'mentee',
     loadChildren: () =>
       import('./mentee/mentee.module').then((m) => m.MenteeModule),
@@ -162,14 +160,15 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    canActivate: [AuthGuardGuard,],
+    canActivate: [AuthGuardService,],
     // data:{
     //   expectedRoles: ['ADMIN']
     // },
     loadChildren: () =>
       import('./admin/admin.module').then((m) => m.AdminModule),
       
-  },
+  }
+  
   
 ];
 

@@ -102,7 +102,7 @@ export class UserTokenService {
    }
 
    public  isUserConnected(){
-     return this._isUserConnected;
+    return !!localStorage.getItem("token");
    }
    public setConnectedUser(status:boolean){
      this._isUserConnected=status;

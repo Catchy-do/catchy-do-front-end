@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MentorComponent } from './mentor.component';
+import { AuthGuardService } from '../services/auth/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -62,7 +63,8 @@ const routes: Routes = [
         loadChildren: () =>
           import('./edit-blog/edit-blog.module').then((m) => m.EditBlogModule),
       },
-    ],
+    ]
+    , canActivate: [AuthGuardService]
   },
 ];
 @NgModule({

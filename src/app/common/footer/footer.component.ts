@@ -31,6 +31,7 @@ export class FooterComponent implements OnInit {
   logOut() {
     this.pubServices.logout(this.userInfo?.userId);
     this.dataStore.removeFromStorage("userInfo");
+    this.dataStore.removeFromStorage("token");
     this.userInfo = null;
     this.commonService.nextmessage('logout');
     this.userAuth.logout();

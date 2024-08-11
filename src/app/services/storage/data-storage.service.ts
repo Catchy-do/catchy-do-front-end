@@ -5,6 +5,9 @@ import { UserInfo } from 'src/app/admin/model/userInfo';
   providedIn: 'root'
 })
 export class DataStorageService {
+  setToken(access_token: any) {
+    throw new Error('Method not implemented.');
+  }
 
   constructor() { }
 

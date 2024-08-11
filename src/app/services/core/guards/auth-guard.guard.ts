@@ -11,9 +11,9 @@ export class AuthGuardGuard implements CanActivate {
   constructor(public auth: UserTokenService, public router: Router) {}
 
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  canActivate(){
+      console.log("this.auth-----------------------------------------------------------------------")
+      console.log(this.auth)
       if (!this.auth.isUserConnected()) {
         this.router.navigate(['/login-page']);
         return false;

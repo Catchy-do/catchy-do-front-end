@@ -33,7 +33,7 @@ export class UserInfo {
     niveau!: string;
     password!: string;
     confirm!: string;
-    roles!: String[];
+    role!: String[];
     startHour!: string;
     endHour!: string;
     active!: string;

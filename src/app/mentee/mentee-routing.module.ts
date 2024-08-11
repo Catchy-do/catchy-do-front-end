@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { MenteeComponent } from './mentee.component';
+import { AuthGuardService } from '../services/auth/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -31,8 +32,10 @@ const routes: Routes = [
         loadChildren: () =>
           import('./settings/settings.module').then((m) => m.SettingsModule),
       },
-    ],
+    ]
+    ,canActivate: [AuthGuardService],
   },
+  { path: '**', redirectTo: 'dashboard' }, // Wildcard route to catch all
 ];
 
 @NgModule({

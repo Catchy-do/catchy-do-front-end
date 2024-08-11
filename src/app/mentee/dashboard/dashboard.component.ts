@@ -24,7 +24,20 @@ export class DashboardComponent implements OnInit {
     this.commonService.nextdataSource(this.dataStorage.getUserInfo());
    
     this.getAppointments();
+    
+    if (window.performance) {
+      const navigation = window.performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
+
+      if (navigation && navigation.type === 'reload') {
+        console.log('Page was refreshed');
+        // Your logic here for a page refresh
+      } else {
+        console.log('Page was not refreshed');
+        // Your logic here for a normal navigation
+      }
+    }
   }
+
 
   getAppointments() {
     this.menteeService.getBookings(this.userId).subscribe((res) => {
