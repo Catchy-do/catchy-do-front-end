@@ -20,8 +20,9 @@ export class DashboardComponent implements OnInit {
     public dataStorage: DataStorageService) { }
 
   ngOnInit(): void {
-    console.log("mentee dashboard")
     this.userId = this.dataStorage.getUserInfo().userId;
+    this.commonService.nextdataSource(this.dataStorage.getUserInfo());
+   
     this.getAppointments();
   }
 

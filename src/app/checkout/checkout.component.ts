@@ -28,16 +28,16 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.doctorId = this.route.snapshot.queryParams['id'];
-    this.getDoctorsDetails();
+    this.getMentorProfile();
     this.allPatients();
     this.getAppointments();
   }
 
-  getDoctorsDetails() {
+  getMentorProfile() {
     if (!this.doctorId) {
       this.doctorId = 1;
     }
-    this.commonService.getDoctorDetails(this.doctorId).subscribe((res) => {
+    this.commonService.getMentorProfile(this.doctorId).subscribe((res) => {
       this.doctorDetails = res;
     });
   }

@@ -110,7 +110,7 @@
 									  </div>
 									  <div class="modal-footer">
 										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cancelAppointment()">Fermer</button>
-										<button type="button" class="btn btn-primary" (click)="confirmAppointment()">Enregistrer Modification</button>
+										<button type="button" class="btn btn-primary" (click)="confirmAppointment()">Confirmé</button>
 									  </div>
 									</div>
 								  </div>
@@ -125,7 +125,7 @@
 					<!-- /Mentor Widget -->
 				</div>
 
-				<div class="load-more text-center" *ngIf="mentors.length !== 0 && load !== false" >
+				<div class="load-more text-center" *ngIf="mentors!=null && mentors.length !== 0 && load !== false "  >
 					<a class="btn btn-primary btn-sm" href="javascript:void(0);" (click)="loadMore()">Voir Plus</a>
 				</div>
 			</div>

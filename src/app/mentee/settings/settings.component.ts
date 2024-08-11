@@ -1,10 +1,9 @@
 import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { MatLegacyDialog as MatDialog, MatLegacyDialogRef as MatDialogRef } from '@angular/material/legacy-dialog';
-import { error } from 'console';
 import { ToastrService } from 'ngx-toastr';
 import { UserInfo } from 'src/app/admin/model/userInfo';
+import { CommonServiceService } from 'src/app/common-service.service';
 import { MenteeServicesService } from 'src/app/services/mentee/mentee-services.service';
 import { PaysResp } from 'src/app/services/model/paysResp';
 import { RegionResp } from 'src/app/services/model/regionResp';
@@ -51,6 +50,7 @@ export class SettingsComponent implements OnInit {
     public dataStore: DataStorageService,
     public pubServices: PublicServicesService,
     public fb: UntypedFormBuilder,
+    public commonService: CommonServiceService,
     private menteeService: MenteeServicesService, private toastr: ToastrService) {
 
     this.userInfo = this.dataStore.getUserInfo();
@@ -77,7 +77,7 @@ export class SettingsComponent implements OnInit {
     this.selectedCountry.id = this.userInfo.paysID.toString();
     this.selectedVille.id = this.userInfo.villeID.toString();
     this.selectedRegion.id = this.userInfo.regionID.toString();
-    console.log(this.userInfo)
+   
     this.getAllPays();
     this.getuserImage();
     this.getAllPaysRegion(this.userInfo.paysID);
@@ -127,10 +127,19 @@ export class SettingsComponent implements OnInit {
           setTimeout(() => {
             this.progress = 0;
           }, 1500);
-          console.log(event.body)
 
       }
+      
+      this.getUSerProfile();
     })
+  }
+  getUSerProfile(){
+
+    this.pubServices.getUserProfile(this.userInfo.userId).subscribe((response: any) => {
+      this.userInfo = response as UserInfo;
+      this.commonService.nextdataSource( this.userInfo);
+      this.getuserImage();
+    });
   }
 
   cancel() {
@@ -157,8 +166,9 @@ export class SettingsComponent implements OnInit {
         console.log('Error occurred:', error);
 
       });
-    this.dataStore.setUserInfo(this.userInfo)
-
+      this.commonService.nextdataSource( this.userInfo);
+       this.dataStore.setUserInfo(this.userInfo)
+ 
   }
 
   getAllPays() {
@@ -190,7 +200,7 @@ export class SettingsComponent implements OnInit {
       (result) => {
         this.result = result as Resps;
         this.villes = this.result.data.children as VilleResp[];
-        console.log(this.villes)
+        
       }, (error) => {
         console.log('Error occurred:', error);
       });

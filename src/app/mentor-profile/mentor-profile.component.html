@@ -5,12 +5,16 @@
             <div class="col-xl-8">
 
                 <!-- Mentor Widget -->
-                <div class="card">
+                <div class="card" *ngIf="mentorProfile!=null">
                     <div class="card-body">
                         <div class="mentor-widget">
                             <div class="user-info-left align-items-center">
                                 <div class="mentor-img d-flex flex-wrap justify-content-center">
-                                    <div class="pro-avatar">AB</div>
+                                   
+                                        <a [routerLink]="'/mentorProfile-profile'" [queryParams]="{id: mentorProfile.userId}">
+                                            <img *ngIf="mentorProfile.imgUrl==null"src="assets/img/user/avatar-user-male.png"  class="img-fluid" alt="User Image">
+                                            <img  *ngIf="mentorProfile.imgUrl!=null" src="{{mentorProfile.imgUrl}}" class="img-fluid" alt="User Image">
+                                        </a>
                                     <div class="rating text-center">
                                         <i class="fas fa-star filled"></i>
                                         <i class="fas fa-star filled"></i>
@@ -19,21 +23,24 @@
                                         <i class="fas fa-star"></i>
                                     </div>
                                     <div class="mentor-details m-0">
-                                        <p class="user-location m-0"><i class="fas fa-map-marker-alt"></i> Lafayette, Tunis</p>
+                                        <p class="user-location m-0"><i class="fas fa-map-marker-alt"></i> {{mentorProfile.adresse}}</p>
                                     </div>
                                 </div>
                                 <div class="user-info-cont">
-                                    <h4 class="usr-name">Amin Bel Agha</h4>
-                                    <p class="mentor-type">Mathématiques</p>
+                                    <h4 class="usr-name">{{mentorProfile.firstName}} {{mentorProfile.lastName}}</h4>
+                                    <p class="mentor-type">{{ getCompetenceIntitules() }}</p>
                                     <div class="mentor-action">
                                         <p class="mentor-type social-title">Contactez-Moi</p>
                                         <a href="javascript:void(0)" class="btn-blue">
                                             <i class="fas fa-comments"></i>
                                         </a>
-                                        <a [routerLink]="'/message'" class="btn-blue">
+                                        <a href="javascript:void(0)" class="btn-blue">
                                             <i class="fas fa-envelope"></i>
                                         </a>
-                                        <a href="javascript:void(0)" class="btn-blue" data-bs-toggle="modal" data-bs-target="#voice_call">
+                                        <!--<a href="javascript:void(0)" class="btn-blue" data-bs-toggle="modal" data-bs-target="#voice_call">
+                                            <i class="fas fa-phone-alt"></i>
+                                        </a>-->
+                                        <a href="javascript:void(0)" class="btn-blue" >
                                             <i class="fas fa-phone-alt"></i>
                                         </a>
                                     </div>
@@ -41,8 +48,8 @@
                             </div>
                             <div class="user-info-right d-flex align-items-end flex-wrap">
                                 <div class="hireme-btn text-center">
-                                    <span class="hire-rate">50DT / Mois</span>
-                                    <a class="blue-btn-radius" [routerLink]="'/mentee/booking'">Réservez</a>
+                                    <span class="hire-rate"> --DT / Mois</span>
+                                    <a class="blue-btn-radius" (click)="openConfirmationPopup(mentorProfile)">Réservez</a>
                                 </div>
                             </div>
                         </div>
@@ -58,8 +65,8 @@
                         <div class="widget about-widget custom-about mb-0">
                             <h4 class="widget-title">Biographie</h4>
                             <hr/>
-                            <p> Etudiant en ingénierie mécanique </p>
-                            <p> Baccalauréat Mathématiques</p>
+                            <p>{{mentorProfile.biographie}} </p>
+                           
                         </div>
                         <!-- /About Details -->
                     </div>
@@ -78,7 +85,7 @@
                                         <div class="experience-content">
                                             <div class="timeline-content">
                                                 <span>Genre</span>
-                                                <div class="row-result">Male</div>
+                                                <div class="row-result">{{mentorProfile.sexe}} </div>
                                             </div>
                                         </div>
                                     </li>
@@ -86,7 +93,7 @@
                                         <div class="experience-content">
                                             <div class="timeline-content">
                                                 <span>Date de Naissance</span>
-                                                <div class="row-result">01 - 02 - 2000</div>
+                                                <div class="row-result">{{mentorProfile.dateOfBirth}}</div>
                                             </div>
                                         </div>
                                     </li>
@@ -119,7 +126,7 @@
                                         <div class="experience-content">
                                             <div class="timeline-content">
                                                 <span>Etudiant</span>
-                                                <div class="row-result">ENIT</div>
+                                              <!--  <div class="row-result">ENIT</div>-->
                                             </div>
                                         </div>
                                     </li>
@@ -127,7 +134,7 @@
                                         <div class="experience-content">
                                             <div class="timeline-content">
                                                 <span> Spécialité</span>
-                                                <div class="row-result">Ingénierie Mécanique</div>
+                                                <div class="row-result">{{ getCompetenceIntitules() }}</div>
                                             </div>
                                         </div>
                                     </li>
@@ -143,7 +150,7 @@
                                         <div class="experience-content">
                                             <div class="timeline-content">
                                                 <span>Nature de Diplome</span>
-                                                <div class="row-result">Cycle Préparatoire</div>
+                                            <!-- <div class="row-result">Cycle Préparatoire</div>-->   
                                             </div>
                                         </div>
                                     </li>
@@ -167,24 +174,17 @@
                                     <li>
                                         <div class="experience-content">
                                             <div class="timeline-content">
-                                                <span>Adresse 1</span>
-                                                <div class="row-result">Lafayette</div>
+                                                <span>Adresse </span>
+                                                <div class="row-result">{{mentorProfile.adresse}}</div>
                                             </div>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="experience-content">
-                                            <div class="timeline-content">
-                                                <span>Adresse 2</span>
-                                                <div class="row-result">Tunis</div>
-                                            </div>
-                                        </div>
-                                    </li>
+                                    
                                     <li>
                                         <div class="experience-content">
                                             <div class="timeline-content">
                                                 <span>Pays</span>
-                                                <div class="row-result">Tunisie</div>
+                                                <div class="row-result">{{mentorProfile.countryName}}</div>
                                             </div>
                                         </div>
                                     </li>
@@ -192,11 +192,11 @@
                                         <div class="experience-content">
                                             <div class="timeline-content">
                                                 <span>Cité</span>
-                                                <div class="row-result">Lafayette</div>
+                                                <div class="row-result">vil{{mentorProfile.ville}}le</div>
                                             </div>
                                         </div>
                                     </li>
-                                    <li>
+                                <!--    <li>
                                         <div class="experience-content">
                                             <div class="timeline-content">
                                                 <span>Gouvernorat</span>
@@ -211,7 +211,7 @@
                                                 <div class="row-result">1200</div>
                                             </div>
                                         </div>
-                                    </li>
+                                    </li>-->
                                 </ul>
                             </div>
                         </div>
@@ -220,7 +220,22 @@
                     </div>
                 </div>
                 <!-- /Mentor Details Tab -->
-
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" role="dialog" [ngClass]="{'show': showConfirmationPopup}" [ngStyle]="{'display': showConfirmationPopup ? 'block' : 'none'}" >
+                    <div class="modal-dialog modal-dialog-centered">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLabel">Confirmer Réservation</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="cancelAppointment()"></button>
+                        </div>
+                        <div class="modal-body">
+                          voulez vous confirmez la Réservation ?
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="cancelAppointment()">Fermer</button>
+                          <button type="button" class="btn btn-primary" (click)="confirmAppointment()">Confirmé</button>
+                        </div>
+                      </div>
+                    </div>
             </div>
         </div>	
     </div>

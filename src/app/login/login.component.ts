@@ -65,11 +65,8 @@ export class LoginComponent implements OnInit {
     this.authService.authenticate(email, password).
       subscribe((result: any) => {
         result = result as any;
-        console.log(result);
         this.usrTokenSvc.setAccessToken(result.access_token);
         this.usrTokenSvc.setConnectedUser(true);
-        this.dataStore.setItem('username', email);
-        this.dataStore.setItem('password', password);
         this.pubServices.getUserProfile(result.id).subscribe((response: any) => {
           let res = response as UserInfo;
           this.userInfo = res;

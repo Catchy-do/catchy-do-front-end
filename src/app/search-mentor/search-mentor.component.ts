@@ -156,7 +156,9 @@ export class SearchMentorComponent implements OnInit {
     this.remainingItems = this.mentors.length - this.itemsToShow;
     this.load = this.remainingItems > 0 ? true : false;
   }
-
+ mentorprofile( userId: number){
+console.log(userId)
+ }
   // bookAppointment(id:any) {
   //   this.router.navigateByUrl('/mentee/booking?id=' + id);
     

@@ -23,7 +23,17 @@ export class SidemenuComponent implements OnInit {
     public commonService: CommonServiceService,
     public dataStorage: DataStorageService,
     public userInfo: UserInfo
-  ) {}
+  ) {
+    this.commonService.dataSource.subscribe(data => {
+      if(data!=null){
+        this.dataStorage.setUserInfo(data);
+        this.userInfo=data;
+        this.userImage = data.imgUrl
+      }
+    }
+     
+    );
+  }
 
   ngOnInit(): void {
     this.splitVal = this.router.url.split('/');
@@ -48,6 +58,16 @@ export class SidemenuComponent implements OnInit {
       $(".main-wrapper").removeClass("slide-nav");
       }
       });
+      this.commonService.dataSource.subscribe(data => {
+        if(data!=null){
+          this.dataStorage.setUserInfo(data);
+          this.userInfo=data;
+          this.userImage = data.imgUrl
+        }
+       
+      }
+      
+      );
   }
 
   // getuserImage() {

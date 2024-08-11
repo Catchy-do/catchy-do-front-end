@@ -50,7 +50,7 @@ export class BookingComponent implements OnInit {
     } else {
       this.doctorId = 1;
     }
-    this.getDoctorsDetails();
+    this.getMentorProfile();
     this.patientDetails();
     this.getBookings();
     //this.getMentees();
@@ -62,8 +62,8 @@ export class BookingComponent implements OnInit {
     });
   }
 
-  getDoctorsDetails() {
-    this.commonService.getDoctorDetails(this.doctorId).subscribe((res) => {
+  getMentorProfile() {
+    this.commonService.getMentorProfile(this.doctorId).subscribe((res) => {
       this.doctorDetails = res;
     });
   }

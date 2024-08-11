@@ -45,11 +45,12 @@
 					<div class="footer-widget footer-menu">
 						<h2 class="footer-title"> Pour Apprenant(e)</h2>
 						<ul>
-							<li><a [routerLink]="'/mentor-profile'">Recherche Tuteurs</a></li>
-							<li><a [routerLink]="'/login-page'">Se Connecter</a></li>
-							<li><a [routerLink]="'/register'">S'inscrire</a></li>
-							<li><a [routerLink]="'/mentee/booking'">Réservez</a></li>
-							<li><a [routerLink]="'/mentee/dashboard'">Tableau de Bord Apprenant</a></li>
+							<li><a>Recherche Tuteurs</a></li>
+							<li  *ngIf="userInfo ==null" ><a [routerLink]="'/login-page'">Se Connecter</a></li>
+							<li  *ngIf="userInfo!=null"><a  (click)="logOut()">Se déconnecter</a></li>
+							<li *ngIf="userInfo==null"><a [routerLink]="'/register'">S'inscrire</a></li>
+							<li><a>Réservez</a></li>
+							<li><a >Tableau de Bord Apprenant</a></li>
 						</ul>
 					</div>
 					<!-- /Footer Widget -->
@@ -61,11 +62,12 @@
 					<div class="footer-widget footer-menu">
 						<h2 class="footer-title">Pour Tuteur/rice</h2>
 						<ul>
-							<li><a [routerLink]="'/mentor/my-bookings'">Réservation</a></li>
-							<li><a [routerLink]="'/message'">Chat</a></li>
-							<li><a [routerLink]="'/login'">Se Connecter</a></li>
-							<li><a [routerLink]="'/register'">S'inscrire</a></li>
-							<li><a [routerLink]="'/mentor/dashboard'"> Tableau de Bord Tuteur</a></li>
+							<li><a >Réservation</a></li>
+							<li><a >Chat</a></li>
+							<li  *ngIf="userInfo ==null" ><a [routerLink]="'/login-page'">Se Connecter</a></li>
+							<li  *ngIf="userInfo!=null" ><a  (click)="logOut()" >Se déconnecter</a></li>
+							<li><a>S'inscrire</a></li>
+							<li><a > Tableau de Bord Tuteur</a></li>
 						</ul>
 					</div>
 					<!-- /Footer Widget -->

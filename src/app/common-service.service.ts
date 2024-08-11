@@ -3,7 +3,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { SERVER_URL } from 'src/environments/environment';
+import { SERVER_URL } from 'src/environments/environment'
+import { UserInfo } from './admin/model/userInfo';
 
 @Injectable({
   providedIn: 'root',
@@ -55,20 +56,28 @@ export class CommonServiceService {
     },
   ];
 
+
+  dataSource = new BehaviorSubject<any>(null);
   messages:any = '';
-  SERVER_URL: string = 'https://dev.catchy-do.com/api/catchy/';
   message: BehaviorSubject<String>;
+  
+
+
+
   constructor(public http: HttpClient) {
     this.message = new BehaviorSubject(this.messages);
+    this.dataSource = new BehaviorSubject<any>(null);
   }
   public getAllCompetences(){
     return this.http.get(SERVER_URL+'/public/competencesList');
   }
   createAppointment(params:any) {
-    return this.http.post(`${this.SERVER_URL + 'createAppointment'}`, params);
+    return this.http.post(`${SERVER_URL + 'createAppointment'}`, params);
   }
 
-  
+  nextdataSource(data: any) {
+    this.dataSource.next(data);
+  }
   nextmessage(data:any) {
     this.message.next(data);
   }
@@ -86,11 +95,11 @@ export class CommonServiceService {
   }
 
   getTags() {
-    return this.http.get(this.SERVER_URL + 'tags');
+    return this.http.get(SERVER_URL + 'tags');
   }
 
   getPositions() {
-    return this.http.get(this.SERVER_URL + 'positions');
+    return this.http.get(SERVER_URL + 'positions');
   }
 
   getSpeciality() {
@@ -98,15 +107,15 @@ export class CommonServiceService {
   }
 
   createSpeciality(data:any) {
-    return this.http.post(`${this.SERVER_URL + 'specialityList'}`, data);
+    return this.http.post(`${SERVER_URL + 'specialityList'}`, data);
   }
 
   updateSpeciality(data:any, id:any) {
-    return this.http.put(`${this.SERVER_URL + 'specialityList'}/${id}`, data);
+    return this.http.put(`${SERVER_URL + 'specialityList'}/${id}`, data);
   }
 
   deleteSpeciality(id:any) {
-    return this.http.delete(`${this.SERVER_URL + 'specialityList'}/${id}`);
+    return this.http.delete(`${SERVER_URL + 'specialityList'}/${id}`);
   }
 
   public getMentors() {
@@ -130,91 +139,91 @@ export class CommonServiceService {
   }
 
 
-  getDoctorDetails(id:any) {
-    return this.http.get(`${this.SERVER_URL + 'mentors'}/${id}`);
+  getMentorProfile(id:any) {
+    return this.http.get(`${SERVER_URL + '/mentors'}/${id}`);
   }
 
   getAppointments() {
-    return this.http.get(this.SERVER_URL + 'appointments');
+    return this.http.get(SERVER_URL + '/appointments');
   }
   
 
   updateAppointment(data:any, id:any) {
-    return this.http.put(`${this.SERVER_URL + 'appointments'}/${id}`, data);
+    return this.http.put(`${SERVER_URL + '/appointments'}/${id}`, data);
   }
 
   getpatients() {
-    return this.http.get(this.SERVER_URL + 'mentees');
+    return this.http.get(SERVER_URL + '/mentees');
   }
 
   createBlogs(data:any) {
-    return this.http.post(`${this.SERVER_URL + 'blogs'}`, data);
+    return this.http.post(`${SERVER_URL + '/blogs'}`, data);
   }
 
   getBlogs() {
-    return this.http.get(this.SERVER_URL + 'blogs');
+    return this.http.get(SERVER_URL + '/blogs');
   }
 
   getBlogsDetails(id:any) {
-    return this.http.get(`${this.SERVER_URL + 'blogs'}/${id}`);
+    return this.http.get(`${SERVER_URL + '/blogs'}/${id}`);
   }
 
   updateBlog(data:any, id:any) {
-    return this.http.put(`${this.SERVER_URL + 'blogs'}/${id}`, data);
+    return this.http.put(`${SERVER_URL + '/blogs'}/${id}`, data);
   }
 
   deleteBlog(id:any) {
-    return this.http.delete(`${this.SERVER_URL + 'blogs'}/${id}`);
+    return this.http.delete(`${SERVER_URL + '/blogs'}/${id}`);
   }
 
   createDoctor(data:any) {
-    return this.http.post(`${this.SERVER_URL + 'mentors'}`, data);
+    return this.http.post(`${SERVER_URL + '/mentors'}`, data);
   }
 
   createPatient(data:any) {
-    return this.http.post(`${this.SERVER_URL + 'mentees'}`, data);
+    return this.http.post(`${SERVER_URL + '/mentees'}`, data);
   }
 
   getPatientDetails(id:any) {
-    return this.http.get(`${this.SERVER_URL + 'mentees'}/${id}`);
+    return this.http.get(`${SERVER_URL + '/mentees'}/${id}`);
   }
 
   
 
   getFav() {
-    return this.http.get(this.SERVER_URL + 'favourites');
+    return this.http.get(SERVER_URL + '/favourites');
   }
 
   createFav(params:any) {
-    return this.http.post(this.SERVER_URL + 'favourites', params);
+    return this.http.post(SERVER_URL + '/favourites', params);
   }
 
   getComments() {
-    return this.http.get(this.SERVER_URL + 'comments');
+    return this.http.get(SERVER_URL + 'comments');
   }
 
   createComment(params:any) {
-    return this.http.post(this.SERVER_URL + 'comments', params);
+    return this.http.post(SERVER_URL + 'comments', params);
   }
 
   deleteFav(id:any) {
-    return this.http.delete(`${this.SERVER_URL + 'favourites'}/${id}`);
+    return this.http.delete(`${SERVER_URL + 'favourites'}/${id}`);
   }
 
   getTransactions() {
-    return this.http.get(this.SERVER_URL + 'transactions');
+    return this.http.get(SERVER_URL + 'transactions');
   }
 
   deleteTransaction(id:any) {
-    return this.http.delete(`${this.SERVER_URL + 'transactions'}/${id}`);
+    return this.http.delete(`${SERVER_URL + 'transactions'}/${id}`);
   }
 
   getReviews() {
-    return this.http.get(this.SERVER_URL + 'reviews');
+    return this.http.get(SERVER_URL + 'reviews');
   }
 
   deleteReview(id:any) {
-    return this.http.delete(`${this.SERVER_URL + 'reviews'}/${id}`);
+    return this.http.delete(`${SERVER_URL + 'reviews'}/${id}`);
   }
 
   

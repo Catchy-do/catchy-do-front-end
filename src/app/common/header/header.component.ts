@@ -10,6 +10,7 @@ import { UserInfo } from 'src/app/admin/model/userInfo';
 import { DataStorageService } from 'src/app/services/storage/data-storage.service';
 import { WebSocketService } from 'src/app/services/websocket/websocket.service';
 import { UserAuthService } from 'src/app/services/auth/user-auth.service';
+import { PublicServicesService } from 'src/app/services/public/public-services.service';
 
 @Component({
   selector: 'app-header',
@@ -35,6 +36,7 @@ export class HeaderComponent implements OnInit {
     public dataStore: DataStorageService,
     private webSocketService: WebSocketService,
     private userAuth: UserAuthService,
+    private pubServices: PublicServicesService
   ) {
 
     router.events.subscribe((event: Event) => {
@@ -98,10 +100,13 @@ export class HeaderComponent implements OnInit {
         }
       }
     }
+
+    this.commonService.dataSource.subscribe(data => this.userInfo = data);
   }
 
   ngOnInit(): void {
-
+console.log("geaaaader")
+console.log(this.userInfo)
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         $('html').removeClass('menu-opened');
@@ -109,6 +114,7 @@ export class HeaderComponent implements OnInit {
         $('.main-wrapper').removeClass('slide-nav');
       }
     });
+    this.commonService.dataSource.subscribe(data => this.userInfo = data);
   }
 
   ngAfterViewInit() {
@@ -159,10 +165,13 @@ export class HeaderComponent implements OnInit {
     }
   }
   logOut() {
+    this.pubServices.logout(this.userInfo?.userId);
+    this.dataStore.removeFromStorage("userInfo");
     this.userInfo = null;
     this.commonService.nextmessage('logout');
-    this.webSocketService.disconnect();
-    this.webSocketService.disconnect();
     this.userAuth.logout();
+    this.webSocketService.disconnect();
+    this.webSocketService.disconnect();
+
   }
 }

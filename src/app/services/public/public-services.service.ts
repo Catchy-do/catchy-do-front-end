@@ -72,6 +72,8 @@ export class PublicServicesService {
   public getAllCompetences(){
     return this.httpService.get(SERVER_URL+'/public/competencesList');
   }
- 
+  public logout(userID: number | undefined) {
+    return this.httpService.post(SERVER_URL + '/auth/logoutUser', userID);
+  }
 }
 
