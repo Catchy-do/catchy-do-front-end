@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin.component';
+import { AuthGuardService } from '../services/auth/auth-guard.service';
 
 const routes: Routes = [
   {
@@ -213,7 +214,7 @@ const routes: Routes = [
             (m) => m.InvoiceReportsModule
           ),
       },
-    ],
+    ],canActivate: [AuthGuardService]
   },
 ];
 

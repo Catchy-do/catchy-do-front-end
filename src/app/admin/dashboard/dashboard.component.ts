@@ -176,13 +176,16 @@ export class DashboardComponent implements OnInit {
     public menteeService: MenteeServicesService) {}
 
   ngOnInit(): void {
+     console.log('on init')
     this.getMentors();
     this.getMentees();
   }
   getMentors() {
+    console.log('getMentors')
     this.menteeService.getMentors().subscribe(
       (res) => {
         this.mentors = res as UserInfo[];
+        
         // this.mentors.forEach(elt =>{
         //   this.getuserImage(elt);
 
@@ -194,6 +197,7 @@ export class DashboardComponent implements OnInit {
     );
   }
   getMentees() {
+    console.log('getMentees')
     this.menteeService.getMentees().subscribe(
       (res) => {
         this.mentees = res as UserInfo[];

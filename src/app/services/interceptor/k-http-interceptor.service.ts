@@ -4,6 +4,7 @@ import { UserTokenService } from '../auth/user-token.service';
 import { HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpErrorResponse, HttpInterceptor } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { DataStorageService } from '../storage/data-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class KHttpInterceptorService implements HttpInterceptor {
   constructor(
     private router: Router,
     //public toastController: ToastController,
-    private usrTokenSvc: UserTokenService
+    public usrTokenSvc: UserTokenService,
+    public storage: DataStorageService
   ) {
     //this.token_string='eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsiVVNFUl9DTElFTlRfUkVTT1VSQ0UiLCJVU0VSX0FETUlOX1JFU09VUkNFIl0sInVzZXJfbmFtZSI6ImFkbWluIiwic2NvcGUiOlsicm9sZV9hZG1pbiJdLCJleHAiOjE1NjIyMzk3OTEsImF1dGhvcml0aWVzIjpbInJvbGVfYWRtaW4iLCJjYW5fdXBkYXRlX3VzZXIiLCJjYW5fcmVhZF91c2VyIiwiY2FuX2NyZWF0ZV91c2VyIiwiY2FuX2RlbGV0ZV91c2VyIl0sImp0aSI6IjdhNTI3YTYwLTkyYmEtNGNjYS05MzYwLTk4MjMzODVhNjUzNSIsImVtYWlsIjoid2lsbGlhbUBnbWFpbC5jb20iLCJjbGllbnRfaWQiOiJVU0VSX0NMSUVOVF9BUFAifQ.ctveAEn7gybAiF_gZxkHev-25Zt5nNPejnmShYiq2ItJNZpUw3Dr8brAcWTv46GWsR3PzxFc3e12y5emlfI3yvHvmQz94GGgMUD9Fg3EviPeULKkBHTuTBc1j9ulvNW8fQTSuRUv2bKWrXA7ZgUKVpPahdmUPlSl7_nS3UEwCRPP72GgLSgQzm4Ia2j9PJl5bMAGhDtwzjAuzy69hLemdy8GxKPtc3aDjbHEAjW9RMyNkWkbulMRS8rNMCbbvw3FlSG7leGdaCEQYEiFfF7bDkBNhM6e9RC-C5xEnuoyrovWjUAjHvA_4dmuXobbDzGV3xsCKecLmwATXk6hE9uhDQ';
     //console.log('TokenInterceptor::TokenInterceptor() - calling def constructor ...');
@@ -46,9 +48,15 @@ export class KHttpInterceptorService implements HttpInterceptor {
     //    throw new Error("Method not implemented.");
   }
   private addHeaderInformation(request: HttpRequest<any>) {
+    console.log("intervespter------------------------------------------")
     if (this.usrTokenSvc != null)
       this.token_string = this.usrTokenSvc.getAccessToken();
-
+    if( this.storage.getItem("token")!=null){
+      this.token_string =this.storage.getItem("token") as string; 
+      this.usrTokenSvc.setAccessToken(this.token_string);
+      this.usrTokenSvc.setConnectedUser(true);
+    
+    }
     if (this.token_string != null) {
       request = request.clone({
         setHeaders: {

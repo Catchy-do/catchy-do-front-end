@@ -172,15 +172,16 @@
 										<th>Avis</th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody *ngIf="mentors!=null">
 									<tr  *ngFor="let mentor of mentors">
 										<td>
 											<h2 class="table-avatar">
 												
 												<a [routerLink]="'/admin/mentor-profile'"[queryParams]="{id: mentor.userId}" class="avatar avatar-sm me-2">
-													<img *ngIf="mentor.imgUrl==null"src="assets/img/user/avatar-user-male.png"  class="img-fluid" alt="User Image">
-												   <img  *ngIf="mentor.imgUrl!=null" src="{{mentor.imgUrl}}" class="img-fluid" alt="User Image"></a>
-												<a [routerLink]="'/admin/mentor-profile'" [queryParams]="{id: mentor.userId}"> {{mentor.firstName}} {{mentor.lastName}} </a>
+													<img *ngIf="mentor.imgUrl==null"src="assets/img/user/avatar-user-male.png" [routerLink]="'/admin/mentor-profile'"[queryParams]="{id: mentor.userId}"  class="img-fluid" alt="User Image">
+												   <img  *ngIf="mentor.imgUrl!=null" src="{{mentor.imgUrl}}" class="img-fluid"  [routerLink]="'/admin/mentor-profile'"[queryParams]="{id: mentor.userId}"alt="User Image"></a>
+												<a [routerLink]="'/admin/mentor-profile'" [queryParams]="{id: mentor.userId}">
+													 {{mentor.firstName}} {{mentor.lastName}} </a>
 											</h2>
 										</td>
 										<td>{{ getCompetenceIntitules(mentor) }}</td>
@@ -219,7 +220,7 @@
 										<th> Payé </th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody *ngIf="mentees!=null">
 									<tr *ngFor="let mentee  of mentees">
 										<td>
 											<h2 class="table-avatar">

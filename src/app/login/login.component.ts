@@ -68,7 +68,6 @@ export class LoginComponent implements OnInit {
 
         this.usrTokenSvc.setAccessToken(result.access_token);
         this.usrTokenSvc.setConnectedUser(true);
-        console.log(this.usrTokenSvc.isUserConnected())
         this.dataStore.setItem("token",result.access_token);
         this.pubServices.getUserProfile(result.id).subscribe((response: any) => {
           let res = response as UserInfo;

@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminInvoiceComponent } from './admin-invoice.component';
+import { AuthGuardService } from 'src/app/services/auth/auth-guard.service';
 
 const routes: Routes = [
 	{
 		path : '',
-		component : AdminInvoiceComponent
+		component : AdminInvoiceComponent, canActivate: [AuthGuardService]
 	}
 ];
 
