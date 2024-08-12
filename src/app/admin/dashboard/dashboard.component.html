@@ -228,7 +228,7 @@
 												   <img  *ngIf="mentee.imgUrl!=null" src="{{mentee.imgUrl}}" class="img-fluid" alt="User Image">
 												
 												</a>
-												<a [routerLink]="'/admin/mentor-profile'"> {{mentee.firstName}} {{mentee.lastName}}</a>
+												<a [routerLink]="'/admin/mentor-profile'"  [queryParams]="{id: mentee.userId}"> {{mentee.firstName}} {{mentee.lastName}}</a>
 											</h2>
 										</td>
 										<td>{{mentee.phoneNumber}} </td>
